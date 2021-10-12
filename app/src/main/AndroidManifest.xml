@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.composeapp" >
+    package="NPI" >
 
     <application
         android:allowBackup="true"
@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComposeApp" >
         <activity
-            android:name=".OtraActividad"
+            android:name="com.example.NPI.OtraActividad"
             android:exported="true"
             android:label="@string/title_activity_otra_actividad"
             android:theme="@style/Theme.ComposeApp.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.NPI.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ComposeApp.NoActionBar" >
