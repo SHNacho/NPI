@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.npi">
+    package="com.example.composeapp" >
 
     <application
         android:allowBackup="true"
@@ -8,12 +8,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Npi">
+        android:theme="@style/Theme.ComposeApp" >
+        <activity
+            android:name=".OtraActividad"
+            android:exported="true"
+            android:label="@string/title_activity_otra_actividad"
+            android:theme="@style/Theme.ComposeApp.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Npi.NoActionBar">
+            android:theme="@style/Theme.ComposeApp.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

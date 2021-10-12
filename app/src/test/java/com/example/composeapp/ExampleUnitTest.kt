@@ -1,4 +1,4 @@
-package com.example.npi
+package com.example.composeapp
 
 import org.junit.Test
 
