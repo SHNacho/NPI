@@ -32,6 +32,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.compose.material.Icon
+import androidx.compose.material.icons.filled.AssignmentInd
+import androidx.compose.material.icons.filled.Book
 
 class OtraActividad : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +49,9 @@ class OtraActividad : ComponentActivity() {
 
 sealed class BottomNavigationScreens(val route: String, @StringRes val resourceId: Int, val icon: ImageVector){
     object Home : BottomNavigationScreens("Inicio", R.string.home_route, Icons.Filled.Home)
-    object Schedule : BottomNavigationScreens("Horario", R.string.schedule_route, Icons.Filled.CalendarToday)
+    object Schedule : BottomNavigationScreens("Horario", R.string.schedule_route,Icons.Filled.CalendarToday)
+    object Biblioteca : BottomNavigationScreens("Biblioteca", R.string.schedule_route, Icons.Filled.Book)
+    object Asistencia : BottomNavigationScreens("Asistencia", R.string.schedule_route, Icons.Filled.AssignmentInd)
 }
 
 
@@ -63,7 +68,9 @@ fun MainScreen() {
     // Aquí añadimos todos los objetos que aparecerán en el submenú inferior.
     val bottomNavigationItems = listOf(
         BottomNavigationScreens.Home,
-        BottomNavigationScreens.Schedule
+        BottomNavigationScreens.Schedule,
+        BottomNavigationScreens.Biblioteca,
+        BottomNavigationScreens.Asistencia
     )
 
     // Creamos un "Scaffold" o "Armazón" con forma de barra inferior.
@@ -119,6 +126,12 @@ private fun MainScreenNavigationConfigurations(
             HomeScreen()
         }
         composable(BottomNavigationScreens.Schedule.route) {
+            //CalendarioScreen()
+        }
+        composable(BottomNavigationScreens.Biblioteca.route) {
+            //CalendarioScreen()
+        }
+        composable(BottomNavigationScreens.Asistencia.route) {
             //CalendarioScreen()
         }
     }
