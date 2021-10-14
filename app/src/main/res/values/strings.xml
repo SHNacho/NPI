@@ -3,4 +3,6 @@
     <string name="title_activity_otra_actividad">OtraActividad</string>
     <string name="home_route">Home</string>
     <string name="schedule_route">Horario</string>
+    <string name="biblioteca_route">Biblioteca</string>
+    <string name="asistencia_route">Asistencia</string>
 </resources>
