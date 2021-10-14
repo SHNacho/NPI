@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/baseline_home_white_24dp"
+        android:title="@string/home_menu"/>
+    <item
+        android:id="@+id/biblioteca"
+        android:enabled="true"
+        android:icon="@drawable/baseline_book_white_24dp"
+        android:title="@string/biblioteca_menu" />
+    <item
+        android:id="@+id/horario"
+        android:enabled="true"
+        android:icon="@drawable/baseline_calendar_today_white_24dp"
+        android:title="@string/horario_menu" />
+    <item
+        android:id="@+id/otro"
+        android:enabled="true"
+        android:icon="@drawable/baseline_account_balance_white_24dp"
+        android:title="@string/otro_menu" />
+</menu>

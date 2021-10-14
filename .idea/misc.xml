@@ -3,10 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../layout/compose-model-1634141209538.xml" value="0.1425925925925926" />
-        <entry key="../../../../layout/compose-model-1634193740263.xml" value="0.14074074074074075" />
-        <entry key="../../../../layout/compose-model-1634193760879.xml" value="0.5" />
-        <entry key="..\:/Users/nacho/AndroidStudioProjects/ComposeApp/app/src/main/res/layout/activity_otra_actividad.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/nacho/AndroidStudioProjects/NPI/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2537037037037037" />
+        <entry key="..\:/Users/nacho/AndroidStudioProjects/NPI/app/src/main/res/layout/activity_main.xml" value="0.2913752913752914" />
+        <entry key="..\:/Users/nacho/AndroidStudioProjects/NPI/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.5" />
       </map>
     </option>
   </component>
@@ -15,5 +14,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.3372149442018438" />
+      </ProjectState>
+    </option>
   </component>
 </project>
