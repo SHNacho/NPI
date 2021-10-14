@@ -27,9 +27,7 @@ class MainActivity : ComponentActivity() {
             ComposeAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-
                         login()
-
                 }
             }
         }
@@ -113,19 +111,3 @@ class MainActivity : ComponentActivity() {
         startActivity(intent)
     }
 }
-
-//@Composable
-//fun Greeting(name: String){
-//    Text(text = "Hello $name")
-//    Button(onClick = {sendMessage()}) {
-//        Text(text = "Pulsa aquí")
-//    }
-//}
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun DefaultPreview() {
-//    ComposeAppTheme {
-//        Greeting("Android")
-//    }
-//}
