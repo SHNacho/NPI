@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NPI">
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.npi.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -16,7 +16,7 @@
         android:icon="@drawable/baseline_calendar_today_white_24dp"
         android:title="@string/horario_menu" />
     <item
-        android:id="@+id/otro"
+        android:id="@+id/asistencia"
         android:enabled="true"
         android:icon="@drawable/baseline_pan_tool_white_24dp"
         android:title="@string/asistencia_menu" />

@@ -7,6 +7,10 @@
         <entry key="..\:/Users/nacho/AndroidStudioProjects/NPI/app/src/main/res/layout/activity_main.xml" value="0.2913752913752914" />
         <entry key="..\:/Users/nacho/AndroidStudioProjects/NPI/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_asistencia.xml" value="0.3689421573736321" />
+        <entry key="app/src/main/res/layout/fragment_biblioteca.xml" value="0.3689421573736321" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_horario.xml" value="0.3689421573736321" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.36875" />
       </map>
     </option>
