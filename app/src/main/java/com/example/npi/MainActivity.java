@@ -11,12 +11,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import java.util.Formatter;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
 
     private BottomNavigationView bottomNavigationView;
-
-    HomeFragment homeFragment = new HomeFragment();
-    BibliotecaFragment bibliotecaFragment = new BibliotecaFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,20 +22,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(this);
-        bottomNavigationView.setSelectedItemId(R.id.bibliotecaFragment);
+        //bottomNavigationView.setSelectedItemId(R.id.home);
     }
 
+    HomeFragment homeFragment = new HomeFragment();
+    BibliotecaFragment bibliotecaFragment = new BibliotecaFragment();
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.homeFragment:
+            case R.id.home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
                 return true;
-            case R.id.bibliotecaFragment:
+            case R.id.biblioteca:
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, bibliotecaFragment).commit();
                 return true;
         }
         return false;
     }
+
+
+
 }
