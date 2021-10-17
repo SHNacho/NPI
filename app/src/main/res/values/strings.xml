@@ -3,5 +3,5 @@
     <string name="horario_menu">Horario</string>
     <string name="home_menu">Home</string>
     <string name="biblioteca_menu">Biblioteca</string>
-    <string name="otro_menu">Otro</string>
+    <string name="asistencia_menu">Asistencia</string>
 </resources>

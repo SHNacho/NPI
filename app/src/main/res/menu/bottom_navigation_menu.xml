@@ -18,6 +18,6 @@
     <item
         android:id="@+id/otro"
         android:enabled="true"
-        android:icon="@drawable/baseline_account_balance_white_24dp"
-        android:title="@string/otro_menu" />
+        android:icon="@drawable/baseline_pan_tool_white_24dp"
+        android:title="@string/asistencia_menu" />
 </menu>
