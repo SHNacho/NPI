@@ -16,8 +16,9 @@
         android:layout_gravity="bottom"
         android:layout_marginBottom="0dp"
         android:background="#37474f"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextAppearanceActive="@style/Platform.MaterialComponents.Light"
+        app:itemTextColor="@color/bottom_nav_color"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_navigation_menu" />
 
