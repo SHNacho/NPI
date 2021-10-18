@@ -22,11 +22,13 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(this);
-        //bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setSelectedItemId(R.id.home);
     }
 
     HomeFragment homeFragment = new HomeFragment();
     BibliotecaFragment bibliotecaFragment = new BibliotecaFragment();
+    HorarioFragment horarioFragment = new HorarioFragment();
+    AsistenciaFragment asistenciaFragment = new AsistenciaFragment();
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -36,6 +38,12 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 return true;
             case R.id.biblioteca:
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, bibliotecaFragment).commit();
+                return true;
+            case R.id.horario:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, horarioFragment).commit();
+                return true;
+            case R.id.asistencia:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, asistenciaFragment).commit();
                 return true;
         }
         return false;
