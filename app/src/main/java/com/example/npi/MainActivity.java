@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //                getSupportFragmentManager().beginTransaction().add(R.id.container, homeFragment).commit();
 //                infoTextView.setText("Hola");
 //                return true;
-
             case R.id.biblioteca:
                 //infoTextView.setText("Hola");
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, bibliotecaFragment).commit();
