@@ -21,6 +21,11 @@ import in.championswimmer.sfg.lib.SimpleFingerGestures;
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, ShakeDetector.Listener {
 
     static BottomNavigationView bottomNavigationView;
+    static SimpleFingerGestures sfg = new SimpleFingerGestures();
+    static HomeFragment homeFragment = new HomeFragment();
+    static BibliotecaFragment bibliotecaFragment = new BibliotecaFragment();
+    static HorarioFragment horarioFragment = new HorarioFragment();
+    static AsistenciaFragment asistenciaFragment = new AsistenciaFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         Toast.makeText(this, "Don't shake me, bro!", Toast.LENGTH_SHORT).show();
     }
 
-    HomeFragment homeFragment = new HomeFragment();
-    BibliotecaFragment bibliotecaFragment = new BibliotecaFragment();
-    HorarioFragment horarioFragment = new HorarioFragment();
-    AsistenciaFragment asistenciaFragment = new AsistenciaFragment();
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
