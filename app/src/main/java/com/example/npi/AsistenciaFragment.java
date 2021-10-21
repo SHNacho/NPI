@@ -42,8 +42,10 @@ public class AsistenciaFragment extends Fragment {
 
             @Override
             public boolean onSwipeLeft(int fingers, long gestureDuration, double gestureDistance) {
-                getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.horarioFragment).commit();
-                MainActivity.bottomNavigationView.setSelectedItemId(R.id.horario);
+                if (fingers == 1){
+                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.horarioFragment).commit();
+                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.horario);
+                }
                 return false;
             }
 
