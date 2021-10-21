@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.GnssAntennaInfo;
 import android.os.Bundle;
@@ -22,9 +25,15 @@ import static android.view.ViewGroup.LayoutParams;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, ShakeDetector.Listener {
+public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, ShakeDetector.Listener, SensorEventListener {
+
+    HomeFragment homeFragment = new HomeFragment();
+    BibliotecaFragment bibliotecaFragment = new BibliotecaFragment();
+    HorarioFragment horarioFragment = new HorarioFragment();
+    AsistenciaFragment asistenciaFragment = new AsistenciaFragment();
 
     private BottomNavigationView bottomNavigationView;
+    static SensorManager sensorManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,20 +44,15 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         bottomNavigationView.setOnItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.home);
 
-        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         ShakeDetector sd = new ShakeDetector(this);
         sd.start(sensorManager);
-
     }
 
     @Override public void hearShake() {
         Toast.makeText(this, "Don't shake me, bro!", Toast.LENGTH_SHORT).show();
     }
 
-    HomeFragment homeFragment = new HomeFragment();
-    BibliotecaFragment bibliotecaFragment = new BibliotecaFragment();
-    HorarioFragment horarioFragment = new HorarioFragment();
-    AsistenciaFragment asistenciaFragment = new AsistenciaFragment();
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -67,6 +71,15 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    @Override
+    public final void onSensorChanged(SensorEvent event) {
     }
 
 
