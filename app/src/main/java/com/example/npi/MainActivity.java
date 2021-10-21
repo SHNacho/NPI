@@ -20,12 +20,19 @@ import in.championswimmer.sfg.lib.SimpleFingerGestures;
 
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, ShakeDetector.Listener {
 
+    // Variable para la barra de navegación inferior
     static BottomNavigationView bottomNavigationView;
+    // Clase controladora de gestos
     static SimpleFingerGestures sfg = new SimpleFingerGestures();
+    // Fragmentos
     static HomeFragment homeFragment = new HomeFragment();
     static BibliotecaFragment bibliotecaFragment = new BibliotecaFragment();
     static HorarioFragment horarioFragment = new HorarioFragment();
     static AsistenciaFragment asistenciaFragment = new AsistenciaFragment();
+    // Controlador de los sensores
+    static SensorManager sensorManager;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         bottomNavigationView.setOnItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.home);
 
-        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         ShakeDetector sd = new ShakeDetector(this);
         sd.start(sensorManager);
 

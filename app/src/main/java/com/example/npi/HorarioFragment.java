@@ -42,6 +42,7 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         this.view = inflater.inflate(R.layout.fragment_horario, container, false);
+        // Obtenemos el TextView del horario
         tv = view.findViewById(R.id.horarioFragment);
 
         Sensor pressure = MainActivity.sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
