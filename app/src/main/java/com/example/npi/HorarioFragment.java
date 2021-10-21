@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import in.championswimmer.sfg.lib.SimpleFingerGestures;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HorarioFragment#newInstance} factory method to
@@ -47,6 +49,51 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
 
         Sensor pressure = MainActivity.sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
         MainActivity.sensorManager.registerListener((SensorEventListener) this, pressure, SensorManager.SENSOR_DELAY_NORMAL);
+
+        MainActivity.sfg.setDebug(true);
+        MainActivity.sfg.setConsumeTouchEvents(true);
+        MainActivity.sfg.setOnFingerGestureListener(new SimpleFingerGestures.OnFingerGestureListener() {
+            @Override
+            public boolean onSwipeUp(int fingers, long gestureDuration, double gestureDistance) {
+                return false;
+            }
+
+            @Override
+            public boolean onSwipeDown(int fingers, long gestureDuration, double gestureDistance) {
+                return false;
+            }
+
+            @Override
+            public boolean onSwipeLeft(int fingers, long gestureDuration, double gestureDistance) {
+                getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.bibliotecaFragment).commit();
+                MainActivity.bottomNavigationView.setSelectedItemId(R.id.biblioteca);
+                return false;
+            }
+
+            @Override
+            public boolean onSwipeRight(int fingers, long gestureDuration, double gestureDistance) {
+                getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.asistenciaFragment).commit();
+                MainActivity.bottomNavigationView.setSelectedItemId(R.id.asistencia);
+                return false;
+            }
+
+            @Override
+            public boolean onPinch(int fingers, long gestureDuration, double gestureDistance) {
+                return false;
+            }
+
+            @Override
+            public boolean onUnpinch(int fingers, long gestureDuration, double gestureDistance) {
+                return false;
+            }
+
+            @Override
+            public boolean onDoubleTap(int fingers) {
+                return false;
+            }
+        });
+
+        view.setOnTouchListener(MainActivity.sfg);
 
         return view;
     }
