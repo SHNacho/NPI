@@ -1,39 +1,31 @@
 package com.example.npi;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.location.GnssAntennaInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.squareup.seismic.ShakeDetector;
 
-import java.util.Formatter;
-
-import static android.view.Gravity.CENTER;
-import static android.view.ViewGroup.LayoutParams;
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import in.championswimmer.sfg.lib.SimpleFingerGestures;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, ShakeDetector.Listener, SensorEventListener {
 
-    HomeFragment homeFragment = new HomeFragment();
-    BibliotecaFragment bibliotecaFragment = new BibliotecaFragment();
-    HorarioFragment horarioFragment = new HorarioFragment();
-    AsistenciaFragment asistenciaFragment = new AsistenciaFragment();
+public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, ShakeDetector.Listener {
 
-    private BottomNavigationView bottomNavigationView;
-    static SensorManager sensorManager;
+    static BottomNavigationView bottomNavigationView;
+    static SimpleFingerGestures sfg = new SimpleFingerGestures();
+    static HomeFragment homeFragment = new HomeFragment();
+    static BibliotecaFragment bibliotecaFragment = new BibliotecaFragment();
+    static HorarioFragment horarioFragment = new HorarioFragment();
+    static AsistenciaFragment asistenciaFragment = new AsistenciaFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +36,16 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         bottomNavigationView.setOnItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.home);
 
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         ShakeDetector sd = new ShakeDetector(this);
         sd.start(sensorManager);
+
     }
 
     @Override public void hearShake() {
         Toast.makeText(this, "Don't shake me, bro!", Toast.LENGTH_SHORT).show();
     }
+
 
 
     @Override
@@ -71,15 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 return true;
         }
         return false;
-    }
-
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
-
-    @Override
-    public final void onSensorChanged(SensorEvent event) {
     }
 
 
