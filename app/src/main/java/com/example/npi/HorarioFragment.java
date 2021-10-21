@@ -8,10 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-    public class HorarioFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link HorarioFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class HorarioFragment extends Fragment {
 
-    public HorarioFragment(){
-        // require a empty public constructor
+    public HorarioFragment() {
+        // Required empty public constructor
     }
 
     @Override
