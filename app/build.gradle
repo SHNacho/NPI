@@ -29,6 +29,7 @@ android {
 
 dependencies {
 
+    implementation 'in.championswimmer:SimpleFingerGestures_Android_Library:1.1'
     implementation 'com.squareup:seismic:1.0.2'
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'

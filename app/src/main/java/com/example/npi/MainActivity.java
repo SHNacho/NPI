@@ -1,30 +1,26 @@
 package com.example.npi;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.hardware.SensorManager;
-import android.location.GnssAntennaInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.squareup.seismic.ShakeDetector;
 
-import java.util.Formatter;
+import in.championswimmer.sfg.lib.SimpleFingerGestures;
 
-import static android.view.Gravity.CENTER;
-import static android.view.ViewGroup.LayoutParams;
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, ShakeDetector.Listener {
 
-    private BottomNavigationView bottomNavigationView;
+    static BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
