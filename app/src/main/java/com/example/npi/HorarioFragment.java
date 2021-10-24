@@ -3,6 +3,7 @@ package com.example.npi;
 import static android.content.Context.SENSOR_SERVICE;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -15,6 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +25,7 @@ import in.championswimmer.sfg.lib.SimpleFingerGestures;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HorarioFragment#newInstance} factory method to
+ * Use the {@l ink HorarioFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class HorarioFragment extends Fragment implements SensorEventListener {
@@ -99,6 +102,20 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
 
         view.setOnTouchListener(MainActivity.sfg);
 
+        final Button button = view.findViewById(R.id.scanner_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openScanner(view);
+            }
+        });
+        button.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                openScanner(view);
+                return true;
+            }
+        });
+
         return view;
     }
 
@@ -117,8 +134,14 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         if(Sensor.TYPE_PRESSURE == event.sensor.getType()){
             presure_value = event.values[0];
             height = SensorManager.getAltitude(SensorManager.PRESSURE_STANDARD_ATMOSPHERE, presure_value);
-            tv.setText("Altura: " + Float.toString(height));
+            //tv.setText("Altura: " + Float.toString(height));
         }
+    }
+
+    /** Called when the user taps the Send button */
+    public void openScanner(View view) {
+        Intent intent = new Intent(getActivity(), ScannerActivity.class);
+        startActivity(intent);
     }
 
 }

@@ -4,6 +4,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,8 @@ import in.championswimmer.sfg.lib.SimpleFingerGestures;
 
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, ShakeDetector.Listener {
 
+    private static final int MY_PERMISSION_REQUEST_CAMERA = 0;
+
     // Variable para la barra de navegación inferior
     static BottomNavigationView bottomNavigationView;
     // Clase controladora de gestos
@@ -31,7 +34,8 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     static AsistenciaFragment asistenciaFragment = new AsistenciaFragment();
     // Controlador de los sensores
     static SensorManager sensorManager;
-
+    // Para el acceso a la cámara
+    private ViewGroup mainLayout;
 
 
     @Override
@@ -75,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         }
         return false;
     }
+
 
 
 
