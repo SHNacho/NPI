@@ -5,4 +5,12 @@
     <string name="biblioteca_menu">Biblioteca</string>
     <string name="asistencia_menu">Asistencia</string>
     <string name="menu_settings">Settings</string>
+    <string-array name="my_header_title">
+        <item></item>
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miercoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+    </string-array>
 </resources>

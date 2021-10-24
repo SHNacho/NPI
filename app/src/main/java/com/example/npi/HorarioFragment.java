@@ -21,6 +21,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.tlaabs.timetableview.Schedule;
+import com.github.tlaabs.timetableview.Time;
+import com.github.tlaabs.timetableview.TimetableView;
+
+import java.util.ArrayList;
+
 import in.championswimmer.sfg.lib.SimpleFingerGestures;
 
 /**
@@ -32,6 +38,7 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
 
     private View view;
     private TextView tv;
+    private TimetableView timetable;
 
 
     public HorarioFragment() {
@@ -40,7 +47,10 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+
     }
 
     @Override
@@ -48,7 +58,9 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         // Inflate the layout for this fragment
         this.view = inflater.inflate(R.layout.fragment_horario, container, false);
         // Obtenemos el TextView del horario
-        tv = view.findViewById(R.id.horarioFragment);
+        timetable = view.findViewById(R.id.timetable);
+
+        timetable.add(crearAgenda());
 
         Sensor pressure = MainActivity.sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
         MainActivity.sensorManager.registerListener((SensorEventListener) this, pressure, SensorManager.SENSOR_DELAY_NORMAL);
@@ -142,6 +154,94 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
     public void openScanner(View view) {
         Intent intent = new Intent(getActivity(), ScannerActivity.class);
         startActivity(intent);
+    }
+
+    public ArrayList<Schedule> crearAgenda(){
+        ArrayList<Schedule> schedules = new ArrayList<Schedule>();
+        Schedule derecho = new Schedule();
+        derecho.setClassTitle("Derecho Fiscal"); // sets subject
+        derecho.setClassPlace("E-21"); // sets place
+        derecho.setProfessorName("Clotilde Martin Pascual");// sets professor
+        derecho.setDay(0);
+        derecho.setStartTime(new Time(8,30)); // sets the beginning of class time (hour,minute)
+        derecho.setEndTime(new Time(10,30)); // sets the end of class time (hour,minute)
+        schedules.add(derecho);
+        Schedule ddsi_teoria = new Schedule();
+        ddsi_teoria.setClassTitle("DDSI - Teoria"); // sets subject
+        ddsi_teoria.setClassPlace("0.3"); // sets place
+        ddsi_teoria.setProfessorName("Ignacio Jose Blanco Medina");// sets professor
+        ddsi_teoria.setDay(0);
+        ddsi_teoria.setStartTime(new Time(11,30)); // sets the beginning of class time (hour,minute)
+        ddsi_teoria.setEndTime(new Time(12,30)); // sets the end of class time (hour,minute)
+        schedules.add(ddsi_teoria);
+        Schedule ddsi_practicas = new Schedule();
+        ddsi_practicas.setDay(1);
+        ddsi_practicas.setClassTitle("DDSI - Practicas (A1)");
+        ddsi_practicas.setProfessorName("Maria Jose Martin Bautista");// sets professor
+        ddsi_practicas.setStartTime(new Time(11,30)); // sets the beginning of class time (hour,minute)
+        ddsi_practicas.setEndTime(new Time(14,30)); // sets the end of class time (hour,minute)
+        ddsi_teoria.setClassPlace("2.4"); // sets place
+        schedules.add(ddsi_practicas);
+        Schedule derecho_2 = new Schedule();
+        derecho_2.setClassTitle("Derecho Fiscal"); // sets subject
+        derecho_2.setClassPlace("D-15"); // sets place
+        derecho_2.setProfessorName("Clotilde Martin Pascual");// sets professor
+        derecho_2.setDay(2);
+        derecho_2.setStartTime(new Time(8,30)); // sets the beginning of class time (hour,minute)
+        derecho_2.setEndTime(new Time(10,30)); // sets the end of class time (hour,minute)
+        schedules.add(derecho_2);
+        Schedule npi_practicas = new Schedule();
+        npi_practicas.setClassTitle("Nuevos Paradigmas de la Interaccion - practicas"); // sets subject
+        npi_practicas.setClassPlace("D-15"); // sets place
+        npi_practicas.setProfessorName("Clotilde Martin Pascual");// sets professor
+        npi_practicas.setDay(3);
+        npi_practicas.setStartTime(new Time(8,30)); // sets the beginning of class time (hour,minute)
+        npi_practicas.setEndTime(new Time(10,30)); // sets the end of class time (hour,minute)
+        schedules.add(npi_practicas);
+        Schedule npi_teoria = new Schedule();
+        npi_teoria.setClassTitle("Nuevos Paradigmas de la Interaccion - teoria"); // sets subject
+        npi_teoria.setClassPlace("D-15"); // sets place
+        npi_teoria.setProfessorName("Clotilde Martin Pascual");// sets professor
+        npi_teoria.setDay(3);
+        npi_teoria.setStartTime(new Time(10,30)); // sets the beginning of class time (hour,minute)
+        npi_teoria.setEndTime(new Time(12,30)); // sets the end of class time (hour,minute)
+        schedules.add(npi_teoria);
+        Schedule procesadores_t = new Schedule();
+        procesadores_t.setClassTitle("Procesadores de Lenguajes - teoria"); // sets subject
+        procesadores_t.setClassPlace("D-15"); // sets place
+        procesadores_t.setProfessorName("Clotilde Martin Pascual");// sets professor
+        procesadores_t.setDay(3);
+        procesadores_t.setStartTime(new Time(12,30)); // sets the beginning of class time (hour,minute)
+        procesadores_t.setEndTime(new Time(14,30)); // sets the end of class time (hour,minute)
+        schedules.add(procesadores_t);
+        Schedule vision_teoria = new Schedule();
+        vision_teoria.setClassTitle("Vision por Computador - teoria"); // sets subject
+        vision_teoria.setClassPlace("1.7"); // sets place
+        vision_teoria.setProfessorName("Nicolas Perez de la Blanca");// sets professor
+        vision_teoria.setDay(4);
+        vision_teoria.setStartTime(new Time(8,30)); // sets the beginning of class time (hour,minute)
+        vision_teoria.setEndTime(new Time(10,30)); // sets the end of class time (hour,minute)
+        schedules.add(vision_teoria);
+        Schedule vision_practicas = new Schedule();
+        vision_practicas.setClassTitle("Vision por Computador - practicas"); // sets subject
+        vision_practicas.setClassPlace("2.8"); // sets place
+        vision_practicas.setProfessorName("Nicolas Perez de la Blanca");// sets professor
+        vision_practicas.setDay(4);
+        vision_practicas.setStartTime(new Time(10,30)); // sets the beginning of class time (hour,minute)
+        vision_practicas.setEndTime(new Time(12,30)); // sets the end of class time (hour,minute)
+        schedules.add(vision_practicas);
+        Schedule pl_practicas = new Schedule();
+        pl_practicas.setClassTitle("Procesadores de Lenguajes - practicas"); // sets subject
+        pl_practicas.setClassPlace("3.4"); // sets place
+        pl_practicas.setProfessorName("Nicolas Perez de la Blanca");// sets professor
+        pl_practicas.setDay(4);
+        pl_practicas.setStartTime(new Time(12,30)); // sets the beginning of class time (hour,minute)
+        pl_practicas.setEndTime(new Time(14,30)); // sets the end of class time (hour,minute)
+        schedules.add(pl_practicas);
+
+
+        return schedules;
+
     }
 
 }

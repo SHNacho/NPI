@@ -7,29 +7,29 @@
     tools:context=".MainActivity"
     tools:visibility="visible">
 
-    <TextView
-        android:id="@+id/horarioFragment"
-        android:layout_width="wrap_content"
+    <com.github.tlaabs.timetableview.TimetableView
+        android:id="@+id/timetable"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Horario"
-        android:textColor="#43a047"
-        android:textSize="40sp"
-        android:textStyle="italic|bold"
+        app:header_title="@array/my_header_title"
+        android:layout_marginBottom="10dp"
+        app:column_count="6"
+        app:start_time="8"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.406"
+        app:row_count="8"
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
         android:id="@+id/scanner_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="QR Scanner"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horarioFragment" />
+        app:layout_constraintTop_toBottomOf="@+id/timetable"
+        app:layout_constraintVertical_bias="0.987" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
