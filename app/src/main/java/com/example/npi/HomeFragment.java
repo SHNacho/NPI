@@ -49,8 +49,10 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onSwipeRight(int fingers, long gestureDuration, double gestureDistance) {
-                getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.bibliotecaFragment).commit();
-                MainActivity.bottomNavigationView.setSelectedItemId(R.id.biblioteca);
+                if (fingers == 1){
+                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.bibliotecaFragment).commit();
+                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.biblioteca);
+                }
                 return false;
             }
 

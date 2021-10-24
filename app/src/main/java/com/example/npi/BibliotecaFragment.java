@@ -33,15 +33,19 @@ public class BibliotecaFragment extends Fragment {
 
             @Override
             public boolean onSwipeLeft(int fingers, long gestureDuration, double gestureDistance) {
-                getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.homeFragment).commit();
-                MainActivity.bottomNavigationView.setSelectedItemId(R.id.home);
+                if (fingers == 1){
+                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.homeFragment).commit();
+                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.home);
+                }
                 return false;
             }
 
             @Override
             public boolean onSwipeRight(int fingers, long gestureDuration, double gestureDistance) {
-                getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.horarioFragment).commit();
-                MainActivity.bottomNavigationView.setSelectedItemId(R.id.horario);
+                if (fingers == 1){
+                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.horarioFragment).commit();
+                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.horario);
+                }
                 return false;
             }
 

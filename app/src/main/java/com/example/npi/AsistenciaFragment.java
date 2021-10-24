@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import in.championswimmer.sfg.lib.SimpleFingerGestures;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AsistenciaFragment#newInstance} factory method to
@@ -21,7 +23,56 @@ public class AsistenciaFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_asistencia, container, false);
+
+        MainActivity.sfg.setDebug(true);
+        MainActivity.sfg.setConsumeTouchEvents(true);
+
+        MainActivity.sfg.setOnFingerGestureListener(new SimpleFingerGestures.OnFingerGestureListener() {
+            @Override
+            public boolean onSwipeUp(int fingers, long gestureDuration, double gestureDistance) {
+                return false;
+            }
+
+            @Override
+            public boolean onSwipeDown(int fingers, long gestureDuration, double gestureDistance) {
+                return false;
+            }
+
+            @Override
+            public boolean onSwipeLeft(int fingers, long gestureDuration, double gestureDistance) {
+                if (fingers == 1){
+                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.horarioFragment).commit();
+                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.horario);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onSwipeRight(int fingers, long gestureDuration, double gestureDistance) {
+                return false;
+            }
+
+            @Override
+            public boolean onPinch(int fingers, long gestureDuration, double gestureDistance) {
+                return false;
+            }
+
+            @Override
+            public boolean onUnpinch(int fingers, long gestureDuration, double gestureDistance) {
+                return false;
+            }
+
+            @Override
+            public boolean onDoubleTap(int fingers) {
+                return false;
+            }
+        });
+
+
+        view.setOnTouchListener(MainActivity.sfg);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_asistencia, container, false);
+        return view;
     }
 }
