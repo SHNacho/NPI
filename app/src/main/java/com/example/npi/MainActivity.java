@@ -1,5 +1,6 @@
 package com.example.npi;
 
+import android.content.Intent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -55,7 +56,9 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
     // Acción al agitar
     @Override public void hearShake() {
-        Toast.makeText(this, "Don't shake me, bro!", Toast.LENGTH_SHORT).show();
+        // TODO Auto-generated method stub
+        Intent i = new Intent(getApplicationContext(),notesActivity.class);
+        startActivity(i);
     }
 
 
