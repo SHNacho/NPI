@@ -49,12 +49,14 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
     }
 
+    // Acción al agitar
     @Override public void hearShake() {
         Toast.makeText(this, "Don't shake me, bro!", Toast.LENGTH_SHORT).show();
     }
 
 
 
+    // Acción al seleccionar un item de la barra inferior de navegación
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
