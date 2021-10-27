@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NPI</string>
+    <string name="app_name">ETSIIT</string>
     <string name="horario_menu">Horario</string>
     <string name="home_menu">Home</string>
     <string name="biblioteca_menu">Biblioteca</string>
@@ -15,4 +15,13 @@
         <item>Jueves</item>
         <item>Viernes</item>
     </string-array>
+    <!-- Strings para la parte de los contactos -->
+    <string name="contact_form">Enviar correo rápido</string>
+    <string name="contact_form_name">Nombre</string>
+    <string name="contact_form_email">Email</string>
+    <string name="contact_form_subject">Asignatura</string>
+    <string name="contact_form_message">Contenido del mensaje</string>
+    <string name="contact_form_button">Enviar mensaje</string>
+    <string name="contact_form_post_message">Enviando mensaje...</string>
+    <string name="contact_posted">Tu mensaje ha sido correctamente enciado</string>
 </resources>

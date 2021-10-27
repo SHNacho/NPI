@@ -3,15 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../npi/app/src/main/res/layout/activity_contactos.xml" value="0.165" />
         <entry key="../npi/app/src/main/res/layout/activity_main.xml" value="0.17984496124031008" />
         <entry key="../npi/app/src/main/res/layout/activity_note_editor.xml" value="0.31927083333333334" />
         <entry key="../npi/app/src/main/res/layout/activity_notes.xml" value="0.33016304347826086" />
+        <entry key="../npi/app/src/main/res/layout/fragment_asistencia.xml" value="0.25271739130434784" />
         <entry key="../npi/app/src/main/res/layout/fragment_biblioteca.xml" value="0.19947916666666668" />
         <entry key="../npi/app/src/main/res/layout/fragment_home.xml" value="0.24791666666666667" />
         <entry key="../npi/app/src/main/res/layout/fragment_notes.xml" value="0.2234853741809247" />
         <entry key="../npi/app/src/main/res/menu/add_note_menu.xml" value="0.1" />
         <entry key="../npi/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.24791666666666667" />
-        <entry key="..\:/Users/Usuario/StudioProjects/NPI3/app/src/main/res/layout/fragment_horario.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/nacho/AndroidStudioProjects/NPI/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2537037037037037" />
         <entry key="..\:/Users/nacho/AndroidStudioProjects/NPI/app/src/main/res/layout/activity_main.xml" value="0.2913752913752914" />
         <entry key="..\:/Users/nacho/AndroidStudioProjects/NPI/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.5" />

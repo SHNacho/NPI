@@ -1,4 +1,5 @@
 package com.example.npi;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,8 @@ public class HomeFragment extends Fragment {
         MainActivity.sfg.setOnFingerGestureListener(new SimpleFingerGestures.OnFingerGestureListener() {
             @Override
             public boolean onSwipeUp(int fingers, long gestureDuration, double gestureDistance) {
+                Intent i = new Intent(getActivity().getApplicationContext(),contactosActivity.class);
+                startActivity(i);
                 return false;
             }
 
