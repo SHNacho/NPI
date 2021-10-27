@@ -24,7 +24,6 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         text = view.findViewById(R.id.homeFragment);
 
@@ -35,8 +34,11 @@ public class HomeFragment extends Fragment {
         MainActivity.sfg.setOnFingerGestureListener(new SimpleFingerGestures.OnFingerGestureListener() {
             @Override
             public boolean onSwipeUp(int fingers, long gestureDuration, double gestureDistance) {
-                Intent i = new Intent(getActivity().getApplicationContext(),contactosActivity.class);
-                startActivity(i);
+                if (fingers == 3){
+                    Intent i = new Intent(getActivity().getApplicationContext(),contactosActivity.class);
+                    startActivity(i);
+                }
+
                 return false;
             }
 
