@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import in.championswimmer.sfg.lib.SimpleFingerGestures;
 
@@ -29,6 +30,15 @@ public class AsistenciaFragment extends Fragment {
 
         MainActivity.sfg.setDebug(true);
         MainActivity.sfg.setConsumeTouchEvents(true);
+
+        MainActivity.button = (Button) view.findViewById(R.id.botonNFC);
+        MainActivity.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), NFCActivity.class);
+                startActivity(intent);
+            }
+        });
 
         MainActivity.sfg.setOnFingerGestureListener(new SimpleFingerGestures.OnFingerGestureListener() {
             @Override
