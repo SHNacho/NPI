@@ -70,6 +70,10 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         MainActivity.sfg.setOnFingerGestureListener(new SimpleFingerGestures.OnFingerGestureListener() {
             @Override
             public boolean onSwipeUp(int fingers, long gestureDuration, double gestureDistance) {
+                if (fingers == 3){
+                    Intent i = new Intent(getActivity().getApplicationContext(),contactosActivity.class);
+                    startActivity(i);
+                }
                 return false;
             }
 

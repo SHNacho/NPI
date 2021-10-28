@@ -41,7 +41,7 @@ public class contactosActivity extends AppCompatActivity {
                 Boolean onError = false;
                 if (!isValidEmail(email)) {
                     onError = true;
-                    your_email.setError("eMail inválido");
+                    your_email.setError("e-mail inválido");
                     return;
                 }
 

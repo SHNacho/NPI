@@ -1,5 +1,6 @@
 package com.example.npi;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -32,6 +33,10 @@ public class AsistenciaFragment extends Fragment {
         MainActivity.sfg.setOnFingerGestureListener(new SimpleFingerGestures.OnFingerGestureListener() {
             @Override
             public boolean onSwipeUp(int fingers, long gestureDuration, double gestureDistance) {
+                if (fingers == 3){
+                    Intent i = new Intent(getActivity().getApplicationContext(),contactosActivity.class);
+                    startActivity(i);
+                }
                 return false;
             }
 
