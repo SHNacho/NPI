@@ -19,8 +19,10 @@
             android:paddingLeft="3dp"
             android:text="@string/contact_form_name"
             android:textAllCaps="true"
+            android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_marginTop="50sp"/>
 
         <EditText
             android:id="@+id/your_name"
@@ -29,7 +31,9 @@
             android:layout_marginBottom="20dp"
             android:inputType="text"
             android:singleLine="true"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:gravity="center"
+            />
 
         <TextView
             android:layout_width="fill_parent"
@@ -38,7 +42,8 @@
             android:text="@string/contact_form_email"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:gravity="center"/>
 
         <EditText
             android:id="@+id/your_email"
@@ -57,7 +62,8 @@
             android:text="@string/contact_form_subject"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:gravity="center"/>
 
         <EditText
             android:id="@+id/your_subject"
@@ -75,7 +81,8 @@
             android:text="@string/contact_form_message"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:gravity="center"/>
 
         <EditText
             android:id="@+id/your_message"
@@ -85,7 +92,8 @@
             android:height="180dp"
             android:gravity="top"
             android:inputType="textMultiLine"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            />
 
         <Button
             android:id="@+id/post_message"

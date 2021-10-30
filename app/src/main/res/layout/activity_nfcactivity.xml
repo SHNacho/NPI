@@ -7,13 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".NFCActivity"
     android:orientation="vertical">
-  
+
     <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Control de asistencia"
-      android:textColor="#000000"
-      android:textSize="30sp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Control de asistencia"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textSize="30sp">
 
     </TextView>
 
@@ -21,27 +22,30 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="20sp" >
-
-      <EditText
-          android:id="@+id/edit_message"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_weight="2"
-          android:hint="Escribe algo..." />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/activateButton"
-        android:text="Registrarse"
-        android:textColor="#000000"
-      />
   </LinearLayout>
+
+    <TextView
+        android:id="@+id/aviso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120sp"
+        android:text="Acerca el móvil a un asiento y pulsa el botón"
+        android:gravity="center"/>
 
   <TextView
       android:id="@+id/nfc_contents"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10sp"
     />
+
+    <Button
+        android:id="@+id/activateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="70sp"
+        android:text="Registrarse"
+        android:textColor="#000000" />
 
 </LinearLayout>

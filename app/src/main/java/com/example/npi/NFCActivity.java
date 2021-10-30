@@ -46,7 +46,7 @@ public class NFCActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfcactivity);
-        edit_message = (TextView) findViewById(R.id.edit_message);
+        // edit_message = (TextView) findViewById(R.id.edit_message);
         contenidos_nfc = (TextView) findViewById(R.id.nfc_contents);
         ActivateButton = findViewById(R.id.activateButton);
         context = this;
@@ -75,7 +75,7 @@ public class NFCActivity extends AppCompatActivity {
         });
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if(nfcAdapter == null){
-            Toast.makeText(this, "Este dispositivo no sporta NFC.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Este dispositivo no soporta NFC.", Toast.LENGTH_SHORT).show();
         }
         readfromIntent(getIntent());
         pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);

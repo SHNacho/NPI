@@ -25,7 +25,7 @@
         android:id="@+id/scanner_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="QR Scanner"
+        android:text="Abrir escáner QR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
