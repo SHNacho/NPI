@@ -33,7 +33,6 @@ public class notesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notes);
 
         addNoteBtn = findViewById(R.id.add_note_btn);
-
         addNoteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
