@@ -1,6 +1,9 @@
 package com.example.npi;
 
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.lang.Math;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +25,7 @@ import in.championswimmer.sfg.lib.SimpleFingerGestures;
 
 
 
-public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, ShakeDetector.Listener {
+public class MainActivity extends AppCompatActivity implements SensorEventListener, NavigationBarView.OnItemSelectedListener, ShakeDetector.Listener {
 
     private static final int MY_PERMISSION_REQUEST_CAMERA = 0;
 
@@ -36,10 +40,15 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     static AsistenciaFragment asistenciaFragment = new AsistenciaFragment();
     // Controlador de los sensores
     static SensorManager sensorManager;
-    // Para el acceso a la cámara
-    private ViewGroup mainLayout;
 
     static Button button;
+
+    // Para la detección de rotaciones
+    static String next_fragment;
+    // Para el sensor de agitación
+    static ShakeDetector sd;
+
+
 
 
 
@@ -53,17 +62,60 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         bottomNavigationView.setSelectedItemId(R.id.home);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        ShakeDetector sd = new ShakeDetector(this);
+
+        Sensor rotacion = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        sensorManager.registerListener((SensorEventListener) this, rotacion, SensorManager.SENSOR_DELAY_NORMAL);
+
+        sd = new ShakeDetector(this);
         sd.start(sensorManager);
+        next_fragment = "asistencia";
+    }
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        sd.start(sensorManager);
     }
 
     // Acción al agitar
     @Override public void hearShake() {
-        // TODO Auto-generated method stub
         Intent i = new Intent(getApplicationContext(),notesActivity.class);
         startActivity(i);
+    }
+
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    @Override
+    public final void onSensorChanged(SensorEvent event) {
+        float EPSILON = 1.0F;
+        if(Sensor.TYPE_GYROSCOPE == event.sensor.getType()){
+            float ejeY = event.values[1];
+            // Si la velociadad de rotación en el eje Y es mayor de 5 radianes por segundo
+            // en el sentido de las agujas del reloj
+            if(ejeY < -5) {
+                switch (next_fragment){
+                    case "asistencia":
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, asistenciaFragment).commit();
+                        bottomNavigationView.setSelectedItemId(R.id.asistencia);
+                        break;
+                    case "horario":
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, horarioFragment).commit();
+                        bottomNavigationView.setSelectedItemId(R.id.horario);
+                        break;
+                    case "biblioteca":
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, bibliotecaFragment).commit();
+                        bottomNavigationView.setSelectedItemId(R.id.biblioteca);
+                        break;
+                    case "home":
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
+                        bottomNavigationView.setSelectedItemId(R.id.home);
+                        break;
+                }
+            }
+        }
     }
 
 

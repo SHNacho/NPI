@@ -82,4 +82,10 @@ public class HomeFragment extends Fragment {
         view.setOnTouchListener(MainActivity.sfg);
         return view;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        MainActivity.next_fragment = "asistencia";
+    }
 }

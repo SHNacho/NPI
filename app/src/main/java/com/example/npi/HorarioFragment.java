@@ -49,8 +49,6 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -133,6 +131,12 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         });
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        MainActivity.next_fragment = "biblioteca";
     }
 
     @Override

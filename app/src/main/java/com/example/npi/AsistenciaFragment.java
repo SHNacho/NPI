@@ -12,11 +12,6 @@ import android.widget.Button;
 
 import in.championswimmer.sfg.lib.SimpleFingerGestures;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AsistenciaFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AsistenciaFragment extends Fragment {
 
     public AsistenciaFragment() {
@@ -89,5 +84,11 @@ public class AsistenciaFragment extends Fragment {
         view.setOnTouchListener(MainActivity.sfg);
         // Inflate the layout for this fragment
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        MainActivity.next_fragment = "horario";
     }
 }

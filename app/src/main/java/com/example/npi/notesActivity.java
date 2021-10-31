@@ -104,4 +104,10 @@ public class notesActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        MainActivity.sd.stop();
+    }
 }
