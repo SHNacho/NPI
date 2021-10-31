@@ -50,6 +50,7 @@ public class PointsOverlayView extends View {
     }
 
     private void init() {
+        // Leemos las imagenes de los Resources.
         Drawable arrow_left = getResources().getDrawable(
                 R.drawable.baseline_arrow_circle_left_red_400_48dp
         );
@@ -59,6 +60,7 @@ public class PointsOverlayView extends View {
         paint = new Paint();
         paint.setColor(Color.YELLOW);
         paint.setStyle(Paint.Style.FILL);
+        // Convertimos las imagenes a bitmaps para poder dibujarlas con un canvas.
         bm_arrow_left = drawableToBitmap(arrow_left);
         bm_arrow_right = drawableToBitmap(arrow_right);
     }
