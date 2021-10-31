@@ -30,7 +30,7 @@ public class NFCActivity extends AppCompatActivity {
     public static final String Exito_Escritura = "Se ha pasado lista correctamente.";
     public static final String Error_Escritura = "Error en la escritura. Prueba de nuevo";
 
-    String usuario = "77146828K";
+    String usuario = LoginActivity.user;
 
     NfcAdapter nfcAdapter;
     PendingIntent pendingIntent;
