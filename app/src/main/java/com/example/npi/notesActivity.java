@@ -54,11 +54,11 @@ public class notesActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.listView);
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
-        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
+        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notas", null);
 
         if (set == null) {
 
-            notes.add("Example note");
+            notes.add("Nota de ejemplo");
         } else {
             notes = new ArrayList(set);
         }
@@ -88,8 +88,8 @@ public class notesActivity extends AppCompatActivity {
                 // To delete the data from the App
                 new AlertDialog.Builder(notesActivity.this)
                         .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Are you sure?")
-                        .setMessage("Do you want to delete this note?")
+                        .setTitle("Borrando nota")
+                        .setMessage("¿Quieres borrar esta nota? Será eliminada para siempre.")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -97,7 +97,7 @@ public class notesActivity extends AppCompatActivity {
                                 arrayAdapter.notifyDataSetChanged();
                                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
                                 HashSet<String> set = new HashSet(notesActivity.notes);
-                                sharedPreferences.edit().putStringSet("notes", set).apply();
+                                sharedPreferences.edit().putStringSet("notas", set).apply();
                             }
                         }).setNegativeButton("No", null).show();
                 return true;
