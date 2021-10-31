@@ -49,9 +49,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     static ShakeDetector sd;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,8 +114,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         }
     }
-
-
 
     // Acción al seleccionar un item de la barra inferior de navegación
     @Override

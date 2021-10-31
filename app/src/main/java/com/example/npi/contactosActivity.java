@@ -32,6 +32,7 @@ public class contactosActivity extends AppCompatActivity {
                 String email = your_email.getText().toString();
                 String subject = your_subject.getText().toString();
                 String message = your_message.getText().toString();
+
                 if (TextUtils.isEmpty(name)) {
                     your_name.setError("Inserta tu nombre.");
                     your_name.requestFocus();
