@@ -78,6 +78,7 @@ public class BibliotecaFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        MainActivity.next_fragment = "home";
+        MainActivity.next_fragment_left = "home";
+        MainActivity.next_fragment_right = "horario";
     }
 }

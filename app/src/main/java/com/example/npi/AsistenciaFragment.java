@@ -89,6 +89,7 @@ public class AsistenciaFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        MainActivity.next_fragment = "horario";
+        MainActivity.next_fragment_left = "horario";
+        MainActivity.next_fragment_right = "home";
     }
 }

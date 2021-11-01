@@ -1,8 +1,5 @@
 package com.example.npi;
 
-import static android.content.Context.SENSOR_SERVICE;
-
-import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -12,14 +9,11 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.tlaabs.timetableview.Schedule;
 import com.github.tlaabs.timetableview.Time;
@@ -136,7 +130,8 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
     @Override
     public void onStart() {
         super.onStart();
-        MainActivity.next_fragment = "biblioteca";
+        MainActivity.next_fragment_left = "biblioteca";
+        MainActivity.next_fragment_right = "asistencia";
     }
 
     @Override

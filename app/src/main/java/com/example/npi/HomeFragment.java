@@ -6,11 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.io.*;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import in.championswimmer.sfg.lib.SimpleFingerGestures;
 
@@ -86,6 +82,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        MainActivity.next_fragment = "asistencia";
+        MainActivity.next_fragment_left = "asistencia";
+        MainActivity.next_fragment_right = "biblioteca";
     }
 }
