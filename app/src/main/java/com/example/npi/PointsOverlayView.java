@@ -16,6 +16,8 @@ import android.view.View;
 public class PointsOverlayView extends View {
 
     PointF[] points;
+    private int aula_buscada;
+    private int aula_izq_qr;
     private Paint paint;
     Bitmap bm_arrow_left;
     Bitmap bm_arrow_right;
@@ -65,7 +67,9 @@ public class PointsOverlayView extends View {
         bm_arrow_right = drawableToBitmap(arrow_right);
     }
 
-    public void setPoints(PointF[] points) {
+    public void setPoints(PointF[] points, int aula, int izq_qr) {
+        this.aula_buscada = aula;
+        this.aula_izq_qr = izq_qr;
         this.points = points;
         invalidate();
     }
@@ -82,9 +86,11 @@ public class PointsOverlayView extends View {
             PointF inferior_tr = new PointF((inferior_der.x + inferior_izq.x) / 2, inferior_der.y);
             PointF izq_tr = new PointF(superior_izq.x, (superior_izq.y + inferior_izq.y) / 2);
             PointF der_tr = new PointF(superior_der.x, (superior_der.y + inferior_der.y) / 2);
-
             RectF rect = new RectF(izq_tr.x, superior_tr.y, der_tr.x, inferior_tr.y);
-            canvas.drawBitmap(bm_arrow_left, null, rect, paint);
+            if (aula_buscada <= aula_izq_qr)
+                canvas.drawBitmap(bm_arrow_left, null, rect, paint);
+            else
+                canvas.drawBitmap(bm_arrow_right, null, rect, paint);
         }
     }
 }

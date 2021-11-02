@@ -49,8 +49,8 @@ public class BibliotecaFragment extends Fragment {
             @Override
             public boolean onSwipeLeft(int fingers, long gestureDuration, double gestureDistance) {
                 if (fingers == 1){
-                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.homeFragment).commit();
-                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.home);
+                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.horarioFragment).commit();
+                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.horario);
                 }
                 return false;
             }
@@ -58,8 +58,8 @@ public class BibliotecaFragment extends Fragment {
             @Override
             public boolean onSwipeRight(int fingers, long gestureDuration, double gestureDistance) {
                 if (fingers == 1){
-                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.horarioFragment).commit();
-                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.horario);
+                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.homeFragment).commit();
+                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.home);
                 }
                 return false;
             }

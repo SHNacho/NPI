@@ -79,8 +79,8 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
             @Override
             public boolean onSwipeLeft(int fingers, long gestureDuration, double gestureDistance) {
                 if (fingers == 1){
-                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.bibliotecaFragment).commit();
-                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.biblioteca);
+                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.asistenciaFragment).commit();
+                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.asistencia);
                 }
                 return false;
             }
@@ -88,8 +88,8 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
             @Override
             public boolean onSwipeRight(int fingers, long gestureDuration, double gestureDistance) {
                 if (fingers == 1){
-                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.asistenciaFragment).commit();
-                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.asistencia);
+                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.bibliotecaFragment).commit();
+                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.biblioteca);
                 }
                 return false;
             }
@@ -250,8 +250,7 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         pl_practicas.setStartTime(new Time(12,30)); // sets the beginning of class time (hour,minute)
         pl_practicas.setEndTime(new Time(14,30)); // sets the end of class time (hour,minute)
         schedules.add(pl_practicas);
-
-
+        
         return schedules;
 
     }
