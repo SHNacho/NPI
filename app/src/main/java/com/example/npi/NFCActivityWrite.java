@@ -50,7 +50,6 @@ public class NFCActivityWrite extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfcactivity_biblioteca);
-        //edit_message = (TextView) findViewById(R.id.edit_message);
         contenidos_nfc = (TextView) findViewById(R.id.nfc_contents);
         ActivateButton = findViewById(R.id.activateButton);
         context = this;
