@@ -81,8 +81,10 @@ public class ScannerActivity extends AppCompatActivity implements ActivityCompat
     // "text" : the text encoded in QR
     // "points" : points where QR control points are placed
     @Override public void onQRCodeRead(String text, PointF[] points) {
-        resultTextView.setText(text);
-        pointsOverlayView.setPoints(points);
+        int aula = 7;
+        int izq_qr = Integer.parseInt(text);
+        //resultTextView.setText(text);
+        pointsOverlayView.setPoints(points, aula, izq_qr);
     }
 
     private void requestCameraPermission() {

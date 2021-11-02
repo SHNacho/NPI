@@ -250,8 +250,7 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         pl_practicas.setStartTime(new Time(12,30)); // sets the beginning of class time (hour,minute)
         pl_practicas.setEndTime(new Time(14,30)); // sets the end of class time (hour,minute)
         schedules.add(pl_practicas);
-
-
+        
         return schedules;
 
     }
