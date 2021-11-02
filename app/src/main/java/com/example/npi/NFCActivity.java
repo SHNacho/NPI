@@ -39,7 +39,6 @@ public class NFCActivity extends AppCompatActivity {
     Tag myTag;
     Context context;
     TextView contenidos_nfc;
-    TextView edit_message;
     Button ActivateButton;
 
     @Override
