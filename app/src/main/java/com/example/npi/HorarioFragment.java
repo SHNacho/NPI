@@ -77,8 +77,8 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
             @Override
             public boolean onSwipeLeft(int fingers, long gestureDuration, double gestureDistance) {
                 if (fingers == 1){
-                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.bibliotecaFragment).commit();
-                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.biblioteca);
+                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.asistenciaFragment).commit();
+                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.asistencia);
                 }
                 return false;
             }
@@ -86,8 +86,8 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
             @Override
             public boolean onSwipeRight(int fingers, long gestureDuration, double gestureDistance) {
                 if (fingers == 1){
-                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.asistenciaFragment).commit();
-                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.asistencia);
+                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.bibliotecaFragment).commit();
+                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.biblioteca);
                 }
                 return false;
             }
