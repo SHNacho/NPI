@@ -52,15 +52,16 @@ public class AsistenciaFragment extends Fragment {
 
             @Override
             public boolean onSwipeLeft(int fingers, long gestureDuration, double gestureDistance) {
-                if (fingers == 1){
-                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.horarioFragment).commit();
-                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.horario);
-                }
+
                 return false;
             }
 
             @Override
             public boolean onSwipeRight(int fingers, long gestureDuration, double gestureDistance) {
+                if (fingers == 1){
+                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.horarioFragment).commit();
+                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.horario);
+                }
                 return false;
             }
 

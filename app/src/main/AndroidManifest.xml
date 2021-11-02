@@ -29,6 +29,9 @@
             android:name=".NFCActivity"
             android:exported="true" />
         <activity
+            android:name=".NFCActivityWrite"
+            android:exported="true" />
+        <activity
             android:name=".contactosActivity"
             android:exported="true" />
         <activity
