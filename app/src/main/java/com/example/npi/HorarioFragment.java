@@ -43,6 +43,8 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+
     }
 
     @Override
@@ -121,6 +123,13 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
             public boolean onLongClick(View view) {
                 openScanner(view);
                 return true;
+            }
+        });
+
+        timetable.setOnStickerSelectEventListener(new TimetableView.OnStickerSelectedListener() {
+            @Override
+            public void OnStickerSelected(int idx, ArrayList<Schedule> schedules) {
+               openScanner(view);
             }
         });
 
