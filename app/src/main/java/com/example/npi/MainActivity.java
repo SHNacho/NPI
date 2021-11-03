@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onPause() {
         handler.removeCallbacks(processSensors);
+        sensorManager.unregisterListener(this);
 
         super.onPause();
     }

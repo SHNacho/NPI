@@ -28,7 +28,7 @@ import in.championswimmer.sfg.lib.SimpleFingerGestures;
  * Use the {@l ink HorarioFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HorarioFragment extends Fragment implements SensorEventListener {
+public class HorarioFragment extends Fragment{
 
     private View view;
     private TextView tv;
@@ -56,8 +56,8 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
 
         timetable.add(crearAgenda());
 
-        Sensor pressure = MainActivity.sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
-        MainActivity.sensorManager.registerListener((SensorEventListener) this, pressure, SensorManager.SENSOR_DELAY_NORMAL);
+//        Sensor pressure = MainActivity.sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
+//        MainActivity.sensorManager.registerListener((SensorEventListener) this, pressure, SensorManager.SENSOR_DELAY_NORMAL);
 
         MainActivity.sfg.setDebug(true);
         MainActivity.sfg.setConsumeTouchEvents(true);
@@ -115,13 +115,13 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         final Button button = view.findViewById(R.id.scanner_button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                openScanner(view);
+                openScanner(view, 0, null);
             }
         });
         button.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                openScanner(view);
+                openScanner(view, 0, null);
                 return true;
             }
         });
@@ -129,7 +129,7 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         timetable.setOnStickerSelectEventListener(new TimetableView.OnStickerSelectedListener() {
             @Override
             public void OnStickerSelected(int idx, ArrayList<Schedule> schedules) {
-               openScanner(view);
+               openScanner(view, idx, schedules);
             }
         });
 
@@ -143,28 +143,30 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         MainActivity.next_fragment_right = "asistencia";
     }
 
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
-
-    @Override
-    public final void onSensorChanged(SensorEvent event) {
-        float presure_value = 0.0f;
-        float height = 0.0f;
-
-        //tv.setText("Altura" + Float.toString(height));
-        //Toast.makeText(this, "Hay sensor de presión: ", Toast.LENGTH_SHORT).show();
-        if(Sensor.TYPE_PRESSURE == event.sensor.getType()){
-            presure_value = event.values[0];
-            height = SensorManager.getAltitude(SensorManager.PRESSURE_STANDARD_ATMOSPHERE, presure_value);
-            //tv.setText("Altura: " + Float.toString(height));
-        }
-    }
+//    @Override
+//    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
+//
+//    }
+//
+//    @Override
+//    public final void onSensorChanged(SensorEvent event) {
+//        float presure_value = 0.0f;
+//        float height = 0.0f;
+//
+//        //tv.setText("Altura" + Float.toString(height));
+//        //Toast.makeText(this, "Hay sensor de presión: ", Toast.LENGTH_SHORT).show();
+//        if(Sensor.TYPE_PRESSURE == event.sensor.getType()){
+//            presure_value = event.values[0];
+//            height = SensorManager.getAltitude(SensorManager.PRESSURE_STANDARD_ATMOSPHERE, presure_value);
+//            //tv.setText("Altura: " + Float.toString(height));
+//        }
+//    }
 
     /** Called when the user taps the Send button */
-    public void openScanner(View view) {
+    public void openScanner(View view, int idx,  ArrayList<Schedule> schedules) {
         Intent intent = new Intent(getActivity(), ScannerActivity.class);
+        intent.putExtra("idx", idx);
+        intent.putExtra("schedules", schedules);
         startActivity(intent);
     }
 
