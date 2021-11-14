@@ -33,7 +33,7 @@ public class contactosActivity extends AppCompatActivity {
                 String message = your_message.getText().toString();
 
                 if (TextUtils.isEmpty(name)) {
-                    your_name.setError("Inserta tu nombre.");
+                    your_name.setError("Inserta tu nombre");
                     your_name.requestFocus();
                     return;
                 }
@@ -41,7 +41,7 @@ public class contactosActivity extends AppCompatActivity {
                 Boolean onError = false;
                 if (!esValido(email)) {
                     onError = true;
-                    your_email.setError("e-mail inválido");
+                    your_email.setError("e-mail del destinatario inválido");
                     return;
                 }
 

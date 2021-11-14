@@ -17,8 +17,8 @@
     </string-array>
     <!-- Strings para la parte de los contactos -->
     <string name="contact_form">Enviar correo rápido</string>
-    <string name="contact_form_name">Nombre</string>
-    <string name="contact_form_email">Email</string>
+    <string name="contact_form_name">Tu nombre</string>
+    <string name="contact_form_email">Email del destinatario</string>
     <string name="contact_form_subject">Asunto</string>
     <string name="contact_form_message">Contenido del mensaje</string>
     <string name="contact_form_button">Enviar mensaje</string>
