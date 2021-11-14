@@ -1,7 +1,7 @@
 package com.example.npi;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -39,7 +39,7 @@ public class contactosActivity extends AppCompatActivity {
                 }
 
                 Boolean onError = false;
-                if (!isValidEmail(email)) {
+                if (!esValido(email)) {
                     onError = true;
                     your_email.setError("e-mail inválido");
                     return;
@@ -59,16 +59,14 @@ public class contactosActivity extends AppCompatActivity {
 
                 Intent sendEmail = new Intent(android.content.Intent.ACTION_SEND);
 
-                /* Fill it with Data */
                 sendEmail.setType("plain/text");
                 sendEmail.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {
-                        "user@gmail.com"
+                        email
                 });
                 sendEmail.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
                 sendEmail.putExtra(android.content.Intent.EXTRA_TEXT,
                         "Nombre:" + name + '\n' + "Dirección de correo:" + email + '\n' + "Mensaje:" + '\n' + message);
 
-                /* Send it off to the Activity-Chooser */
                 startActivity(Intent.createChooser(sendEmail, "Enviar mail..."));
 
             }
@@ -92,7 +90,7 @@ public class contactosActivity extends AppCompatActivity {
     }
 
     // Para comprobar si el eMail es válido
-    private boolean isValidEmail(String email) {
+    private boolean esValido(String email) {
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
                 "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);

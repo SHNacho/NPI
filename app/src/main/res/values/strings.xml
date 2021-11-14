@@ -19,7 +19,7 @@
     <string name="contact_form">Enviar correo rápido</string>
     <string name="contact_form_name">Nombre</string>
     <string name="contact_form_email">Email</string>
-    <string name="contact_form_subject">Asignatura</string>
+    <string name="contact_form_subject">Asunto</string>
     <string name="contact_form_message">Contenido del mensaje</string>
     <string name="contact_form_button">Enviar mensaje</string>
     <string name="contact_form_post_message">Enviando mensaje...</string>
