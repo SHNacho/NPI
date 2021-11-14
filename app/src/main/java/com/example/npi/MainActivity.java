@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         sd = new ShakeDetector(this);
         sd.start(sensorManager);
-        //next_fragment_left = "asistencia";
+        next_fragment_left = "asistencia";
     }
 
     @Override
@@ -87,14 +87,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onResume();
         sensorManager.registerListener(this, rotacion,
                 SensorManager.SENSOR_DELAY_NORMAL);
+
         handler.post(processSensors);
     }
 
     @Override
     public void onPause() {
         handler.removeCallbacks(processSensors);
-        sensorManager.unregisterListener(this);
-        sd.stop();
+
         super.onPause();
     }
 

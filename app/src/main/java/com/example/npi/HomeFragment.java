@@ -45,15 +45,16 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onSwipeLeft(int fingers, long gestureDuration, double gestureDistance) {
+                if (fingers == 1){
+                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.bibliotecaFragment).commit();
+                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.biblioteca);
+                }
                 return false;
             }
 
             @Override
             public boolean onSwipeRight(int fingers, long gestureDuration, double gestureDistance) {
-                if (fingers == 1){
-                    getParentFragmentManager().beginTransaction().replace(R.id.container, MainActivity.bibliotecaFragment).commit();
-                    MainActivity.bottomNavigationView.setSelectedItemId(R.id.biblioteca);
-                }
+
                 return false;
             }
 
@@ -69,7 +70,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onDoubleTap(int fingers) {
-                text.setText("Double tap");
+                text.setText("UGR");
                 return false;
             }
         });

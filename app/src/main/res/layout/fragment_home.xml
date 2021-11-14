@@ -7,18 +7,102 @@
     tools:context=".MainActivity"
     tools:visibility="visible">
 
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/materialDivider5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/instruccion4"
+        tools:layout_editor_absoluteX="-4dp" />
+
+    <TextView
+        android:id="@+id/instruccion4"
+        android:layout_width="400dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="16dp"
+        android:text="Desliza con 3 dedos hacia arriba para enviar un correo"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialDivider4" />
+
+    <TextView
+        android:id="@+id/instruccion3"
+        android:layout_width="400dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="16dp"
+        android:text='En el apartado de "Asistencia" pasa la asistencia escaneando el NFC de tu mesa'
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialDivider3" />
+
+    <TextView
+        android:id="@+id/instruccion2"
+        android:layout_width="400dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="16dp"
+        android:text="Agita el smartphone para abrir el apartado de notas"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialDivider" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/materialDivider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/instruccion1"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/materialDivider2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/homeFragment"
+        tools:layout_editor_absoluteX="-16dp" />
+
     <TextView
         android:id="@+id/homeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
-        android:textColor="#43a047"
+        android:text="ETSIIT"
+        android:textColor="?attr/colorPrimary"
         android:textSize="40sp"
         android:textStyle="italic|bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04000002" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/materialDivider3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/instruccion2"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/materialDivider4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/instruccion3"
+        tools:layout_editor_absoluteX="-7dp" />
+
+    <TextView
+        android:id="@+id/instruccion1"
+        android:layout_width="400dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="16dp"
+        android:text="Gira el móvil a derecha o izquierda para pasar de página"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialDivider2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,5 @@
 package com.example.npi;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -20,17 +18,23 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
-public class NFCActivity extends AppCompatActivity {
+public class NFCActivityWrite extends AppCompatActivity {
 
     public static final String Error_Detectado = "No se ha detectado la etiqueta NFC";
-    public static final String Exito_Escritura = "Se ha pasado lista correctamente.";
+    public static final String Exito_Escritura = "Registrado en la biblioteca.";
     public static final String Error_Escritura = "Error en la escritura. Prueba de nuevo";
 
     String usuario = LoginActivity.user;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+    String fechaYHoraActual = sdf.format(new Date());
 
     NfcAdapter nfcAdapter;
     PendingIntent pendingIntent;
@@ -39,18 +43,18 @@ public class NFCActivity extends AppCompatActivity {
     Tag myTag;
     Context context;
     TextView contenidos_nfc;
+    TextView edit_message;
     Button ActivateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nfcactivity);
-        // edit_message = (TextView) findViewById(R.id.edit_message);
+        setContentView(R.layout.activity_nfcactivity_biblioteca);
         contenidos_nfc = (TextView) findViewById(R.id.nfc_contents);
         ActivateButton = findViewById(R.id.activateButton);
         context = this;
 
-        /*ActivateButton.setOnClickListener(new View.OnClickListener() {
+        ActivateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
@@ -58,7 +62,7 @@ public class NFCActivity extends AppCompatActivity {
                         Toast.makeText(context, Error_Detectado, Toast.LENGTH_LONG).show();
                     }
                     else{
-                        write(usuario.toString(), myTag);
+                        write(usuario + "/" + fechaYHoraActual, myTag);
                         Toast.makeText(context, Exito_Escritura, Toast.LENGTH_LONG).show();
                     }
                 }
@@ -71,7 +75,7 @@ public class NFCActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        });*/
+        });
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if(nfcAdapter == null){
             Toast.makeText(this, "Este dispositivo no soporta NFC.", Toast.LENGTH_SHORT).show();
@@ -113,7 +117,7 @@ public class NFCActivity extends AppCompatActivity {
         catch(UnsupportedEncodingException e){
             Log.e("UnsupportedEncoding", e.toString());
         }
-        contenidos_nfc.setText("Se ha registrado en la asignatura " + text + " el usuario " + usuario);
+        contenidos_nfc.setText("Se ha registrado su paso en la biblioteca (Usuario " + usuario + ", en la fecha: " + fechaYHoraActual + "). Gracias");
     }
 
     private void write(String text, Tag tag) throws  IOException, FormatException{
@@ -128,7 +132,7 @@ public class NFCActivity extends AppCompatActivity {
     }
 
     private NdefRecord createRecord (String text) throws UnsupportedEncodingException {
-        String lang = "en";
+        String lang = "es";
         byte[] textBytes = text.getBytes();
         byte[] langBytes = lang.getBytes("US-ASCII");
         int langLength = langBytes.length;
