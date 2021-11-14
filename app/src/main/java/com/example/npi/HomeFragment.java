@@ -70,7 +70,6 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onDoubleTap(int fingers) {
-                text.setText("UGR");
                 return false;
             }
         });

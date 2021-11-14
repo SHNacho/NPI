@@ -12,7 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class contactosActivity extends AppCompatActivity {
-    private Activity activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,14 +62,14 @@ public class contactosActivity extends AppCompatActivity {
                 /* Fill it with Data */
                 sendEmail.setType("plain/text");
                 sendEmail.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {
-                        "dr.m.karthiik@gmail.com"
+                        "user@gmail.com"
                 });
                 sendEmail.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
                 sendEmail.putExtra(android.content.Intent.EXTRA_TEXT,
-                        "name:" + name + '\n' + "Email ID:" + email + '\n' + "Message:" + '\n' + message);
+                        "Nombre:" + name + '\n' + "Dirección de correo:" + email + '\n' + "Mensaje:" + '\n' + message);
 
                 /* Send it off to the Activity-Chooser */
-                startActivity(Intent.createChooser(sendEmail, "Send mail..."));
+                startActivity(Intent.createChooser(sendEmail, "Enviar mail..."));
 
             }
         });
@@ -92,7 +91,7 @@ public class contactosActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    // validating email id
+    // Para comprobar si el eMail es válido
     private boolean isValidEmail(String email) {
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
                 "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
