@@ -1,7 +1,7 @@
 package com.example.npi;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,7 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class contactosActivity extends AppCompatActivity {
-    private Activity activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,15 +33,15 @@ public class contactosActivity extends AppCompatActivity {
                 String message = your_message.getText().toString();
 
                 if (TextUtils.isEmpty(name)) {
-                    your_name.setError("Inserta tu nombre.");
+                    your_name.setError("Inserta tu nombre");
                     your_name.requestFocus();
                     return;
                 }
 
                 Boolean onError = false;
-                if (!isValidEmail(email)) {
+                if (!esValido(email)) {
                     onError = true;
-                    your_email.setError("e-mail inválido");
+                    your_email.setError("e-mail del destinatario inválido");
                     return;
                 }
 
@@ -60,17 +59,15 @@ public class contactosActivity extends AppCompatActivity {
 
                 Intent sendEmail = new Intent(android.content.Intent.ACTION_SEND);
 
-                /* Fill it with Data */
                 sendEmail.setType("plain/text");
                 sendEmail.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {
-                        "dr.m.karthiik@gmail.com"
+                        email
                 });
                 sendEmail.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
                 sendEmail.putExtra(android.content.Intent.EXTRA_TEXT,
-                        "name:" + name + '\n' + "Email ID:" + email + '\n' + "Message:" + '\n' + message);
+                        "Nombre:" + name + '\n' + "Dirección de correo:" + email + '\n' + "Mensaje:" + '\n' + message);
 
-                /* Send it off to the Activity-Chooser */
-                startActivity(Intent.createChooser(sendEmail, "Send mail..."));
+                startActivity(Intent.createChooser(sendEmail, "Enviar mail..."));
 
             }
         });
@@ -92,8 +89,8 @@ public class contactosActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    // validating email id
-    private boolean isValidEmail(String email) {
+    // Para comprobar si el eMail es válido
+    private boolean esValido(String email) {
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
                 "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
