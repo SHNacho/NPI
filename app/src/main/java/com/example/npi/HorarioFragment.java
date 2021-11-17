@@ -28,7 +28,7 @@ import in.championswimmer.sfg.lib.SimpleFingerGestures;
  * Use the {@l ink HorarioFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HorarioFragment extends Fragment{
+public class HorarioFragment extends Fragment implements SensorEventListener {
 
     private View view;
     private TextView tv;
@@ -56,8 +56,8 @@ public class HorarioFragment extends Fragment{
 
         timetable.add(crearAgenda());
 
-//        Sensor pressure = MainActivity.sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
-//        MainActivity.sensorManager.registerListener((SensorEventListener) this, pressure, SensorManager.SENSOR_DELAY_NORMAL);
+        Sensor pressure = MainActivity.sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
+        MainActivity.sensorManager.registerListener((SensorEventListener) this, pressure, SensorManager.SENSOR_DELAY_NORMAL);
 
         MainActivity.sfg.setDebug(true);
         MainActivity.sfg.setConsumeTouchEvents(true);
@@ -115,13 +115,13 @@ public class HorarioFragment extends Fragment{
         final Button button = view.findViewById(R.id.scanner_button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                openScanner(view, 0, null);
+                openScanner(view);
             }
         });
         button.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                openScanner(view, 0, null);
+                openScanner(view);
                 return true;
             }
         });
@@ -129,7 +129,7 @@ public class HorarioFragment extends Fragment{
         timetable.setOnStickerSelectEventListener(new TimetableView.OnStickerSelectedListener() {
             @Override
             public void OnStickerSelected(int idx, ArrayList<Schedule> schedules) {
-               openScanner(view, idx, schedules);
+               openScanner(view);
             }
         });
 
@@ -143,30 +143,28 @@ public class HorarioFragment extends Fragment{
         MainActivity.next_fragment_right = "asistencia";
     }
 
-//    @Override
-//    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
-//
-//    }
-//
-//    @Override
-//    public final void onSensorChanged(SensorEvent event) {
-//        float presure_value = 0.0f;
-//        float height = 0.0f;
-//
-//        //tv.setText("Altura" + Float.toString(height));
-//        //Toast.makeText(this, "Hay sensor de presión: ", Toast.LENGTH_SHORT).show();
-//        if(Sensor.TYPE_PRESSURE == event.sensor.getType()){
-//            presure_value = event.values[0];
-//            height = SensorManager.getAltitude(SensorManager.PRESSURE_STANDARD_ATMOSPHERE, presure_value);
-//            //tv.setText("Altura: " + Float.toString(height));
-//        }
-//    }
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    @Override
+    public final void onSensorChanged(SensorEvent event) {
+        float presure_value = 0.0f;
+        float height = 0.0f;
+
+        //tv.setText("Altura" + Float.toString(height));
+        //Toast.makeText(this, "Hay sensor de presión: ", Toast.LENGTH_SHORT).show();
+        if(Sensor.TYPE_PRESSURE == event.sensor.getType()){
+            presure_value = event.values[0];
+            height = SensorManager.getAltitude(SensorManager.PRESSURE_STANDARD_ATMOSPHERE, presure_value);
+            //tv.setText("Altura: " + Float.toString(height));
+        }
+    }
 
     /** Called when the user taps the Send button */
-    public void openScanner(View view, int idx,  ArrayList<Schedule> schedules) {
+    public void openScanner(View view) {
         Intent intent = new Intent(getActivity(), ScannerActivity.class);
-        intent.putExtra("idx", idx);
-        intent.putExtra("schedules", schedules);
         startActivity(intent);
     }
 
@@ -207,7 +205,7 @@ public class HorarioFragment extends Fragment{
         Schedule npi_practicas = new Schedule();
         npi_practicas.setClassTitle("Nuevos Paradigmas de la Interaccion - Prácticas"); // sets subject
         npi_practicas.setClassPlace("D-15"); // sets place
-        npi_practicas.setProfessorName("Clotilde Martín Pascual");// sets professor
+        npi_practicas.setProfessorName("Marcelino Jose Cabrera Cuevas");// sets professor
         npi_practicas.setDay(3);
         npi_practicas.setStartTime(new Time(8,30)); // sets the beginning of class time (hour,minute)
         npi_practicas.setEndTime(new Time(10,30)); // sets the end of class time (hour,minute)

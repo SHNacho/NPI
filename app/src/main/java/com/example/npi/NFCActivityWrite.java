@@ -67,11 +67,11 @@ public class NFCActivityWrite extends AppCompatActivity {
                     }
                 }
                 catch (IOException e){
-                    Toast.makeText(context, Exito_Escritura, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, Error_Escritura, Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
                 catch (FormatException e){
-                    Toast.makeText(context, Exito_Escritura, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, Error_Escritura, Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
             }
@@ -109,14 +109,7 @@ public class NFCActivityWrite extends AppCompatActivity {
         String text = "";
         byte[] payload = msgs[0].getRecords()[0].getPayload();
         String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16" ;
-        int languageCodeLength = payload[0] & 0063; // Cogemos el código del lenguaje, por ejemplo, "en" de inglés
-
-        try{
-            text = new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
-        }
-        catch(UnsupportedEncodingException e){
-            Log.e("UnsupportedEncoding", e.toString());
-        }
+        int languageCodeLength = payload[0] & 0063;
         contenidos_nfc.setText("Se ha registrado su paso en la biblioteca (Usuario " + usuario + ", en la fecha: " + fechaYHoraActual + "). Gracias");
     }
 
