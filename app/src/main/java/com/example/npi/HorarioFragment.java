@@ -112,24 +112,24 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
 
         view.setOnTouchListener(MainActivity.sfg);
 
-        final Button button = view.findViewById(R.id.scanner_button);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                openScanner(view);
-            }
-        });
-        button.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                openScanner(view);
-                return true;
-            }
-        });
+//        final Button button = view.findViewById(R.id.scanner_button);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                openScanner(view);
+//            }
+//        });
+//        button.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//                openScanner(view);
+//                return true;
+//            }
+//        });
 
         timetable.setOnStickerSelectEventListener(new TimetableView.OnStickerSelectedListener() {
             @Override
             public void OnStickerSelected(int idx, ArrayList<Schedule> schedules) {
-               openScanner(view);
+               openScanner(view, idx, schedules);
             }
         });
 
@@ -163,8 +163,10 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
     }
 
     /** Called when the user taps the Send button */
-    public void openScanner(View view) {
+    public void openScanner(View view, int idx, ArrayList<Schedule> schedules) {
         Intent intent = new Intent(getActivity(), ScannerActivity.class);
+        intent.putExtra("idx", idx);
+        intent.putExtra("schedules", schedules);
         startActivity(intent);
     }
 
