@@ -63,7 +63,7 @@ public class contactosActivity extends AppCompatActivity {
                 /* Fill it with Data */
                 sendEmail.setType("plain/text");
                 sendEmail.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {
-                        "dr.m.karthiik@gmail.com"
+                        email
                 });
                 sendEmail.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
                 sendEmail.putExtra(android.content.Intent.EXTRA_TEXT,

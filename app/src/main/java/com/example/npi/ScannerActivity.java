@@ -200,7 +200,10 @@ public class ScannerActivity extends AppCompatActivity implements SensorEventLis
 
         if(Sensor.TYPE_PRESSURE == event.sensor.getType()){
             presure_value = event.values[0];
-            height = SensorManager.getAltitude(SensorManager.PRESSURE_STANDARD_ATMOSPHERE, presure_value);
+            height = SensorManager.getAltitude(
+                    SensorManager.PRESSURE_STANDARD_ATMOSPHERE,
+                    presure_value
+            );
 
             calcularPlantaActual(height);
             if(plantaActual < plantaDestino){
