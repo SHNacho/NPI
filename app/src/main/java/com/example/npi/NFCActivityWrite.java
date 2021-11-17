@@ -57,23 +57,23 @@ public class NFCActivityWrite extends AppCompatActivity {
         ActivateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    if(myTag == null){
-                        Toast.makeText(context, Error_Detectado, Toast.LENGTH_LONG).show();
-                    }
-                    else{
-                        write(usuario + "/" + fechaYHoraActual, myTag);
-                        Toast.makeText(context, Exito_Escritura, Toast.LENGTH_LONG).show();
-                    }
-                }
-                catch (IOException e){
-                    Toast.makeText(context, Error_Escritura, Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
-                catch (FormatException e){
-                    Toast.makeText(context, Error_Escritura, Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
+//                try {
+//                    if(myTag == null){
+//                        Toast.makeText(context, Error_Detectado, Toast.LENGTH_LONG).show();
+//                    }
+//                    else{
+//                        //write(usuario + "/" + fechaYHoraActual, myTag);
+//                        Toast.makeText(context, Exito_Escritura, Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//                catch (IOException e){
+//                    Toast.makeText(context, Error_Escritura, Toast.LENGTH_LONG).show();
+//                    e.printStackTrace();
+//                }
+//                catch (FormatException e){
+//                    Toast.makeText(context, Error_Escritura, Toast.LENGTH_LONG).show();
+//                    e.printStackTrace();
+//                }
             }
         });
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -149,6 +149,17 @@ public class NFCActivityWrite extends AppCompatActivity {
         readfromIntent(intent);
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())){
             myTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+            try {
+                write(usuario + "/" + fechaYHoraActual, myTag);
+                Toast.makeText(context, Exito_Escritura, Toast.LENGTH_LONG).show();
+            }catch (IOException e){
+                Toast.makeText(context, Error_Escritura, Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
+            catch (FormatException e){
+                Toast.makeText(context, Error_Escritura, Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
         }
     }
 
