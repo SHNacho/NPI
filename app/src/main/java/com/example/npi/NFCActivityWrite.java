@@ -33,7 +33,7 @@ public class NFCActivityWrite extends AppCompatActivity {
     public static final String Error_Escritura = "Error en la escritura. Prueba de nuevo";
 
     String usuario = LoginActivity.user;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss", Locale.getDefault());
     String fechaYHoraActual = sdf.format(new Date());
 
     NfcAdapter nfcAdapter;
