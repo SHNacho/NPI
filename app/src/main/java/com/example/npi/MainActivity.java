@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     Handler handler;
     int interval= 1000; // read sensor data each 1000 ms
     boolean flag = false;
-    boolean isHandlerLive = false;
 
 
 
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onStart() {
         super.onStart();
-        sd.start(sensorManager);
+
     }
 
     @Override
@@ -90,14 +89,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onResume();
         sensorManager.registerListener(this, rotacion,
                 SensorManager.SENSOR_DELAY_NORMAL);
-
+        sd.start(sensorManager);
         handler.post(processSensors);
     }
 
     @Override
     public void onPause() {
         handler.removeCallbacks(processSensors);
-
+        sd.stop();
         super.onPause();
     }
 
@@ -122,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             if(flag == true) {
                 if (ejeY < -5) {
                     flag = false;
+                    // Esto hace que el objeto runnable se ejecute cuando pase un tiempo igual a
+                    // 'interval'
                     handler.postDelayed(processSensors, interval);
                     switch (next_fragment_left) {
                         case "asistencia":
@@ -224,14 +225,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         return false;
     }
 
+    // variable runnable que contiene un método que se ejcuta cada vez que se llama a
+    // handler.post
     private final Runnable processSensors = new Runnable() {
         @Override
         public void run() {
-            // Do work with the sensor values.
-
             flag = true;
-            // The Runnable is posted to run again here:
-            //handler.postDelayed(this, interval);
         }
     };
 

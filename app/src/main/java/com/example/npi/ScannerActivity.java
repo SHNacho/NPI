@@ -59,10 +59,13 @@ public class ScannerActivity extends AppCompatActivity implements SensorEventLis
                 SensorManager.SENSOR_DELAY_NORMAL
         );
 
+        // Comprobamos si tiene permisos
+        // Si los tiene iniciamos la vista del lector QR
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_GRANTED) {
             initQRCodeReaderView();
         } else {
+            // Si no los tiene, los pide
             requestCameraPermission();
         }
     }
@@ -87,7 +90,6 @@ public class ScannerActivity extends AppCompatActivity implements SensorEventLis
             qrCodeReaderView.stopCamera();
         }
         super.onPause();
-
     }
 
     @Override public void onRequestPermissionsResult(int requestCode, String[] permissions,
@@ -98,18 +100,18 @@ public class ScannerActivity extends AppCompatActivity implements SensorEventLis
         }
 
         if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Snackbar.make(mainLayout, "Camera permission was granted.", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(mainLayout, "Permiso de cámara concedido.", Snackbar.LENGTH_SHORT).show();
             initQRCodeReaderView();
         } else {
-            Snackbar.make(mainLayout, "Camera permission request was denied.", Snackbar.LENGTH_SHORT)
+            Snackbar.make(mainLayout, "Permiso de cámara denegado.", Snackbar.LENGTH_SHORT)
                     .show();
         }
     }
 
 
-    // Called when a QR is decoded
-    // "text" : the text encoded in QR
-    // "points" : points where QR control points are placed
+    // Cuando lee un código QR
+    // text: texto contenido en el código
+    // points: puntos principales del código QR
     @Override public void onQRCodeRead(String text, PointF[] points) {
         String[] aux = text.split("\n");
         int izq_qr = Integer.parseInt(aux[0]);
@@ -129,7 +131,7 @@ public class ScannerActivity extends AppCompatActivity implements SensorEventLis
 
     private void requestCameraPermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-            Snackbar.make(mainLayout, "Camera access is required to display the camera preview.",
+            Snackbar.make(mainLayout, "Se requiere el acceso a la camara.",
                     Snackbar.LENGTH_INDEFINITE).setAction("OK", new View.OnClickListener() {
                 @Override public void onClick(View view) {
                     ActivityCompat.requestPermissions(ScannerActivity.this, new String[] {
@@ -138,7 +140,7 @@ public class ScannerActivity extends AppCompatActivity implements SensorEventLis
                 }
             }).show();
         } else {
-            Snackbar.make(mainLayout, "Permission is not available. Requesting camera permission.",
+            Snackbar.make(mainLayout, "No tienes permiso de cámara. Solicitando permiso.",
                     Snackbar.LENGTH_SHORT).show();
             ActivityCompat.requestPermissions(this, new String[] {
                     Manifest.permission.CAMERA
@@ -147,12 +149,16 @@ public class ScannerActivity extends AppCompatActivity implements SensorEventLis
     }
 
     private int calcularPlantaActual(float altura){
-        if (altura >= 699.0){
+        if (altura >= 637.0){
+            plantaActual = 3;
+        }else if (altura < 637.0 && altura > 633.5){
             plantaActual = 2;
-        }else if (altura < 699.0 && altura > 696.0){
+        }else if (altura < 633.5 && altura > 629.5){
             plantaActual = 1;
-        }else{
+        }else if (altura < 629.5 && altura > 627.0){
             plantaActual = 0;
+        }else{
+            plantaActual = -1;
         }
         return plantaActual;
     }
@@ -206,6 +212,7 @@ public class ScannerActivity extends AppCompatActivity implements SensorEventLis
             );
 
             calcularPlantaActual(height);
+            //resultTextView.setText(Float.toString(height));
             if(plantaActual < plantaDestino){
                 resultTextView.setText("Sube hasta la planta " + Integer.toString(plantaDestino));
             }else if(plantaActual > plantaDestino){
