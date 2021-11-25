@@ -1,3 +1,6 @@
+// Ignacio Sánchez Herrera
+// Jacobo Casado de Gracia
+// Luis Fernández García
 package com.example.npi;
 
 import android.content.Intent;

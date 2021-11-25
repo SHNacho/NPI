@@ -44,12 +44,7 @@ public class notesActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.listView);
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
         HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
-
-        if (set == null) {
-            notes.add("Nota de ejemplo");
-        } else {
-            notes = new ArrayList(set);
-        }
+        notes = new ArrayList();
 
 
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, notes);

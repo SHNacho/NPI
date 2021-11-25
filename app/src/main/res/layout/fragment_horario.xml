@@ -21,16 +21,4 @@
         app:layout_constraintVertical_bias="0.406"
         app:row_count="8"
         tools:layout_editor_absoluteX="16dp" />
-
-    <Button
-        android:id="@+id/scanner_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Abrir escáner QR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timetable"
-        app:layout_constraintVertical_bias="0.987" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

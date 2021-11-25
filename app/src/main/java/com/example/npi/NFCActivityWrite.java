@@ -44,38 +44,15 @@ public class NFCActivityWrite extends AppCompatActivity {
     Context context;
     TextView contenidos_nfc;
     TextView edit_message;
-    Button ActivateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfcactivity_biblioteca);
         contenidos_nfc = (TextView) findViewById(R.id.nfc_contents);
-        ActivateButton = findViewById(R.id.activateButton);
+
         context = this;
 
-        ActivateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                try {
-//                    if(myTag == null){
-//                        Toast.makeText(context, Error_Detectado, Toast.LENGTH_LONG).show();
-//                    }
-//                    else{
-//                        //write(usuario + "/" + fechaYHoraActual, myTag);
-//                        Toast.makeText(context, Exito_Escritura, Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//                catch (IOException e){
-//                    Toast.makeText(context, Error_Escritura, Toast.LENGTH_LONG).show();
-//                    e.printStackTrace();
-//                }
-//                catch (FormatException e){
-//                    Toast.makeText(context, Error_Escritura, Toast.LENGTH_LONG).show();
-//                    e.printStackTrace();
-//                }
-            }
-        });
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if(nfcAdapter == null){
             Toast.makeText(this, "Este dispositivo no soporta NFC.", Toast.LENGTH_SHORT).show();
@@ -110,7 +87,6 @@ public class NFCActivityWrite extends AppCompatActivity {
         byte[] payload = msgs[0].getRecords()[0].getPayload();
         String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16" ;
         int languageCodeLength = payload[0] & 0063;
-        contenidos_nfc.setText("Se ha registrado su paso en la biblioteca (Usuario " + usuario + ", en la fecha: " + fechaYHoraActual + "). Gracias");
     }
 
     private void write(String text, Tag tag) throws  IOException, FormatException{
@@ -151,6 +127,8 @@ public class NFCActivityWrite extends AppCompatActivity {
             myTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
             try {
                 write(usuario + "/" + fechaYHoraActual, myTag);
+                contenidos_nfc.setText("Se ha registrado su paso en la biblioteca (Usuario "
+                        + usuario + ", en la fecha: " + fechaYHoraActual + "). Gracias");
                 Toast.makeText(context, Exito_Escritura, Toast.LENGTH_LONG).show();
             }catch (IOException e){
                 Toast.makeText(context, Error_Escritura, Toast.LENGTH_LONG).show();
