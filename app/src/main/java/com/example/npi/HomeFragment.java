@@ -1,4 +1,5 @@
 package com.example.npi;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class HomeFragment extends Fragment {
         // require a empty public constructor
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -36,18 +38,22 @@ public class HomeFragment extends Fragment {
         micButton = view.findViewById(R.id.button);
         ttsButton = view.findViewById(R.id.tts);
 
+
         micButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    micButton.setImageResource(R.drawable.baseline_mic_black_24dp);
                     MainActivity.speechRecognizer.stopListening();
+                    return true;
                 }
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     micButton.setImageResource(R.drawable.baseline_mic_red_400_24dp);
                     editText.setText("...");
                     MainActivity.speechRecognizer.startListening(MainActivity.speechRecognizerIntent);
+                    return true;
                 }
-                return false;
+                return true;
             }
         });
 
