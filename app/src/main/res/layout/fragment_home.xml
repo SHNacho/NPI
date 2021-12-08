@@ -126,11 +126,21 @@
         android:layout_marginTop="44dp"
         android:backgroundTint="#F9F8FA"
         android:paddingRight="10dp"
-        android:src="@drawable/ic_mic_black_off"
+        android:src="@drawable/baseline_mic_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/materialDivider5" />
+
+    <Button
+        android:id="@+id/tts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

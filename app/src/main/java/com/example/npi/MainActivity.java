@@ -10,13 +10,18 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +32,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.squareup.seismic.ShakeDetector;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import in.championswimmer.sfg.lib.SimpleFingerGestures;
@@ -37,9 +43,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private static final int MY_PERMISSION_REQUEST_CAMERA = 0;
     public static final Integer RecordAudioRequestCode = 1;
-    private SpeechRecognizer speechRecognizer;
-    private EditText editText;
-    private ImageView micButton;
+    static SpeechRecognizer speechRecognizer;
+    static TextToSpeech textToSpeechEngine;
+    static Intent speechRecognizerIntent;
 
     // Variable para la barra de navegación inferior
     static BottomNavigationView bottomNavigationView;
@@ -76,20 +82,81 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
 
 
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             checkPermission();
         }
 
-        editText = findViewById(R.id.text);
-        micButton = findViewById(R.id.button);
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        textToSpeechEngine = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.SUCCESS) {
+                    Log.e("TTS", "Inicio de la síntesis fallido");
+                }
+            }
+        });
 
-        Object speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-        final Intent speechRecognizerIntent = new
-                Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
-                Locale.getDefault());
+        speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+
+        speechRecognizer.setRecognitionListener(new RecognitionListener() {
+            @Override
+            public void onReadyForSpeech(Bundle bundle) {
+
+            }
+
+            @Override
+            public void onBeginningOfSpeech() {
+                HomeFragment.editText.setText("");
+                HomeFragment.editText.setHint("Listening...");
+            }
+
+            @Override
+            public void onRmsChanged(float v) {
+
+            }
+
+            @Override
+            public void onBufferReceived(byte[] bytes) {
+
+            }
+
+            @Override
+            public void onEndOfSpeech() {
+
+            }
+
+            @Override
+            public void onError(int i) {
+
+            }
+
+            @Override
+            public void onResults(Bundle bundle) {
+                HomeFragment.micButton.setImageResource(R.drawable.baseline_mic_black_24dp);
+                ArrayList<String> data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                HomeFragment.editText.setText(data.get(0));
+                System.out.println(data.get(0));
+                if(data.get(0).equals("qué horario tengo hoy")){
+                    getSupportFragmentManager().beginTransaction().replace(
+                            R.id.container,
+                            horarioFragment
+                    ).commit();
+                    bottomNavigationView.setSelectedItemId(R.id.horario);
+                }
+            }
+
+            @Override
+            public void onPartialResults(Bundle bundle) {
+
+            }
+
+            @Override
+            public void onEvent(int i, Bundle bundle) {
+
+            }
+        });
 
 
 
@@ -112,10 +179,24 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         next_fragment_left = "asistencia";
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        speechRecognizer.destroy();
+    }
+
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            ActivityCompat.requestPermissions(this,new
-                    String[]{Manifest.permission.RECORD_AUDIO},RecordAudioRequestCode);
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECORD_AUDIO},RecordAudioRequestCode);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == RecordAudioRequestCode && grantResults.length > 0 ){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                Toast.makeText(this,"Permission Granted",Toast.LENGTH_SHORT).show();
         }
     }
 
