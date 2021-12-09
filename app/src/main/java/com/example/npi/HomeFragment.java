@@ -49,7 +49,8 @@ public class HomeFragment extends Fragment {
                 }
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     micButton.setImageResource(R.drawable.baseline_mic_red_400_24dp);
-                    editText.setText("...");
+                    editText.setHint("Escuchando...");
+                    editText.getText().clear();
                     MainActivity.speechRecognizer.startListening(MainActivity.speechRecognizerIntent);
                     return true;
                 }

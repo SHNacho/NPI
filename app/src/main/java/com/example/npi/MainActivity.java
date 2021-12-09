@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             checkPermission();
         }
 
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         textToSpeechEngine = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -96,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
@@ -108,8 +108,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             @Override
             public void onBeginningOfSpeech() {
-                HomeFragment.editText.setText("");
-                HomeFragment.editText.setHint("Listening...");
+
             }
 
             @Override
@@ -129,7 +128,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             @Override
             public void onError(int i) {
-
+                System.out.println("Error"+i);
+                HomeFragment.editText.setText("Error: "+i);
             }
 
             @Override
