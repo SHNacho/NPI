@@ -138,13 +138,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 ArrayList<String> data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 HomeFragment.editText.setText(data.get(0));
                 System.out.println(data.get(0));
-                if(data.get(0).equals("qué horario tengo hoy")){
-                    getSupportFragmentManager().beginTransaction().replace(
-                            R.id.container,
-                            horarioFragment
-                    ).commit();
-                    bottomNavigationView.setSelectedItemId(R.id.horario);
-                }
+                ProcesarResultado(data.get(0));
             }
 
             @Override
@@ -358,7 +352,38 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     };
 
+    public void ProcesarResultado(String resultado){
+        if(resultado.contains("horario")){
+            getSupportFragmentManager().beginTransaction().replace(
+                    R.id.container,
+                    horarioFragment
+            ).commit();
+            bottomNavigationView.setSelectedItemId(R.id.horario);
+        }
+        else if(resultado.contains("asistencia")){
+            getSupportFragmentManager().beginTransaction().replace(
+                    R.id.container,
+                    asistenciaFragment
+            ).commit();
+            bottomNavigationView.setSelectedItemId(R.id.asistencia);
+        }
+        else if(resultado.contains("biblioteca")){
+            getSupportFragmentManager().beginTransaction().replace(
+                    R.id.container,
+                    bibliotecaFragment
+            ).commit();
+            bottomNavigationView.setSelectedItemId(R.id.biblioteca);
+        }
+        else if(resultado.contains("nota")||resultado.contains("notas")){
+            Intent i = new Intent(getApplicationContext(),notesActivity.class);
+            startActivity(i);
+        }
+        else if(resultado.contains("correo")||resultado.contains("email")){
+            Intent i = new Intent(getApplicationContext(),contactosActivity.class);
+            startActivity(i);
+        }
 
+    };
 
 
 
