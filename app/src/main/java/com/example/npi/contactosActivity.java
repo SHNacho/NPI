@@ -4,14 +4,32 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class contactosActivity extends AppCompatActivity {
+    static ImageView microNombre;
+    static ImageView microCorreo;
+    static ImageView microAsunto;
+    static ImageView microContenido;
+    static SpeechRecognizer speechRecognizer;
+    static Intent speechRecognizerIntent;
+    int escribiendo = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,8 +39,78 @@ public class contactosActivity extends AppCompatActivity {
         final EditText your_email = (EditText) findViewById(R.id.your_email);
         final EditText your_subject = (EditText) findViewById(R.id.your_subject);
         final EditText your_message = (EditText) findViewById(R.id.your_message);
-
+        microNombre = (ImageView) findViewById(R.id.microNombre);
+        microCorreo = (ImageView) findViewById(R.id.microEmail);
+        microAsunto = (ImageView) findViewById(R.id.microAsunto);
+        microContenido = (ImageView) findViewById(R.id.microContenido);
         Button email = (Button) findViewById(R.id.post_message);
+
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+
+        speechRecognizer.setRecognitionListener(new RecognitionListener() {
+            @Override
+            public void onReadyForSpeech(Bundle params) {
+
+            }
+
+            @Override
+            public void onBeginningOfSpeech() {
+
+            }
+
+            @Override
+            public void onRmsChanged(float rmsdB) {
+
+            }
+
+            @Override
+            public void onBufferReceived(byte[] buffer) {
+
+            }
+
+            @Override
+            public void onEndOfSpeech() {
+
+            }
+
+            @Override
+            public void onError(int error) {
+
+            }
+
+            @Override
+            public void onResults(Bundle results) {
+                ArrayList<String> data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                switch (escribiendo){
+                    case 1:
+                        your_name.setText(data.get(0));
+                        break;
+                    case 2:
+                        your_email.setText(data.get(0));
+                        break;
+                    case 3:
+                        your_subject.setText(data.get(0));
+                        break;
+                    case 4:
+                        your_message.setText(data.get(0));
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onPartialResults(Bundle partialResults) {
+
+            }
+
+            @Override
+            public void onEvent(int eventType, Bundle params) {
+
+            }
+        });
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +157,38 @@ public class contactosActivity extends AppCompatActivity {
 
                 startActivity(Intent.createChooser(sendEmail, "Enviar mail..."));
 
+            }
+        });
+
+        microNombre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                escribiendo = 1;
+                speechRecognizer.startListening(speechRecognizerIntent);
+            }
+        });
+
+        microCorreo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                escribiendo = 2;
+                speechRecognizer.startListening(speechRecognizerIntent);
+            }
+        });
+
+        microAsunto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                escribiendo = 3;
+                speechRecognizer.startListening(speechRecognizerIntent);
+            }
+        });
+
+        microContenido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                escribiendo = 4;
+                speechRecognizer.startListening(speechRecognizerIntent);
             }
         });
     }
