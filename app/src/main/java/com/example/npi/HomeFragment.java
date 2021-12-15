@@ -130,4 +130,11 @@ public class HomeFragment extends Fragment {
         MainActivity.next_fragment_left = "asistencia";
         MainActivity.next_fragment_right = "biblioteca";
     }
+
+    public String resumenDelDia(){
+
+        String siguiente_asignatura = "hola";
+
+        return siguiente_asignatura;
+    }
 }
