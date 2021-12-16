@@ -15,6 +15,11 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.github.tlaabs.timetableview.Schedule;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import in.championswimmer.sfg.lib.SimpleFingerGestures;
 
 public class HomeFragment extends Fragment {
@@ -60,7 +65,7 @@ public class HomeFragment extends Fragment {
 
         ttsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String text = String.valueOf(editText.getText());
+                String text = resumenDelDia();
                 if (!text.isEmpty())
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         MainActivity.textToSpeechEngine.speak(text, TextToSpeech.QUEUE_FLUSH, null, "tts1");
@@ -132,9 +137,26 @@ public class HomeFragment extends Fragment {
     }
 
     public String resumenDelDia(){
+        Calendar calendar = Calendar.getInstance();
+        int dia = calendar.get(Calendar.DAY_OF_WEEK)-2;
+        ArrayList<Schedule> clases = HorarioFragment.crearAgenda();
+        ArrayList<Schedule> clases_del_dia = new ArrayList<Schedule>();
+        String horario = "Hoy tienes clase de ";
 
-        String siguiente_asignatura = "hola";
+        for (Schedule clase:clases){
+            if (clase.getDay()==dia){
+                clases_del_dia.add(clase);
+            }
+        }
 
-        return siguiente_asignatura;
+        for (Schedule clase:clases_del_dia){
+            if(clase == clases_del_dia.get(clases_del_dia.size()-1))
+                horario = horario + "y ";
+            horario = horario + clase.getClassTitle()+" ";
+        }
+
+
+        return horario;
     }
+
 }

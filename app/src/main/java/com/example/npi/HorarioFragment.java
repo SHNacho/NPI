@@ -32,18 +32,24 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
 
     private View view;
     private TextView tv;
-    private TimetableView timetable;
+    static public TimetableView timetable;
 
 
     public HorarioFragment() {
         // Required empty public constructor
     }
-
+    
+    /*public static HorarioFragment newInstance() {
+        HorarioFragment fragment = new HorarioFragment();
+        timetable.add(crearAgenda());
+        return fragment;
+    }
+    */
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
+        MainActivity.homeFragment.text.setText("Creado");
 
     }
 
@@ -156,7 +162,7 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         startActivity(intent);
     }
 
-    public ArrayList<Schedule> crearAgenda(){
+    public static ArrayList<Schedule> crearAgenda(){
         ArrayList<Schedule> schedules = new ArrayList<Schedule>();
         Schedule derecho = new Schedule();
         derecho.setClassTitle("Derecho Fiscal"); // sets subject
@@ -191,7 +197,7 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         derecho_2.setEndTime(new Time(10,30)); // sets the end of class time (hour,minute)
         schedules.add(derecho_2);
         Schedule npi_practicas = new Schedule();
-        npi_practicas.setClassTitle("Nuevos Paradigmas de la Interaccion - Prácticas"); // sets subject
+        npi_practicas.setClassTitle("Nuevos Paradigmas de la Interacción - Prácticas"); // sets subject
         npi_practicas.setClassPlace("3.3"); // sets place
         npi_practicas.setProfessorName("Marcelino Jose Cabrera Cuevas");// sets professor
         npi_practicas.setDay(3);
@@ -199,7 +205,7 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         npi_practicas.setEndTime(new Time(10,30)); // sets the end of class time (hour,minute)
         schedules.add(npi_practicas);
         Schedule npi_teoria = new Schedule();
-        npi_teoria.setClassTitle("Nuevos Paradigmas de la Interaccion - Teoría"); // sets subject
+        npi_teoria.setClassTitle("Nuevos Paradigmas de la Interacción - Teoría"); // sets subject
         npi_teoria.setClassPlace("1.5"); // sets place
         npi_teoria.setProfessorName("Clotilde Martin Pascual");// sets professor
         npi_teoria.setDay(3);
@@ -215,7 +221,7 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         procesadores_t.setEndTime(new Time(14,30)); // sets the end of class time (hour,minute)
         schedules.add(procesadores_t);
         Schedule vision_teoria = new Schedule();
-        vision_teoria.setClassTitle("Vision por Computador - Teoría"); // sets subject
+        vision_teoria.setClassTitle("Visión por Computador - Teoría"); // sets subject
         vision_teoria.setClassPlace("1.7"); // sets place
         vision_teoria.setProfessorName("Nicolas Perez de la Blanca");// sets professor
         vision_teoria.setDay(4);

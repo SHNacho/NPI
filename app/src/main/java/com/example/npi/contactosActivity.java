@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -87,15 +88,22 @@ public class contactosActivity extends AppCompatActivity {
                 switch (escribiendo){
                     case 1:
                         your_name.setText(data.get(0));
+                        microNombre.setImageResource(R.drawable.ic_mic_black_off);
                         break;
                     case 2:
-                        your_email.setText(data.get(0));
+                        String normalizado = Normalizer.normalize(data.get(0), Normalizer.Form.NFD);
+                        normalizado = normalizado.replaceAll("[\\p{InCombiningDiacriticalMarks}]","");
+                        String email = (normalizado.toLowerCase()).replace(" ","")+"@correo.ugr.es";
+                        your_email.setText(email);
+                        microCorreo.setImageResource(R.drawable.ic_mic_black_off);
                         break;
                     case 3:
                         your_subject.setText(data.get(0));
+                        microAsunto.setImageResource(R.drawable.ic_mic_black_off);
                         break;
                     case 4:
                         your_message.setText(data.get(0));
+                        microContenido.setImageResource(R.drawable.ic_mic_black_off);
                         break;
                 }
 
@@ -164,6 +172,7 @@ public class contactosActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 escribiendo = 1;
+                microNombre.setImageResource(R.drawable.baseline_mic_red_400_24dp);
                 speechRecognizer.startListening(speechRecognizerIntent);
             }
         });
@@ -172,6 +181,7 @@ public class contactosActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 escribiendo = 2;
+                microCorreo.setImageResource(R.drawable.baseline_mic_red_400_24dp);
                 speechRecognizer.startListening(speechRecognizerIntent);
             }
         });
@@ -180,6 +190,7 @@ public class contactosActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 escribiendo = 3;
+                microAsunto.setImageResource(R.drawable.baseline_mic_red_400_24dp);
                 speechRecognizer.startListening(speechRecognizerIntent);
             }
         });
@@ -188,6 +199,7 @@ public class contactosActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 escribiendo = 4;
+                microContenido.setImageResource(R.drawable.baseline_mic_red_400_24dp);
                 speechRecognizer.startListening(speechRecognizerIntent);
             }
         });
