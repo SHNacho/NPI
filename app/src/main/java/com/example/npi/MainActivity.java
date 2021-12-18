@@ -382,6 +382,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Intent i = new Intent(getApplicationContext(),contactosActivity.class);
             startActivity(i);
         }
+        else if(resultado.contains("bot")){
+            Intent i = new Intent(getApplicationContext(),BotWebActivity.class);
+            startActivity(i);
+        }
 
     };
 

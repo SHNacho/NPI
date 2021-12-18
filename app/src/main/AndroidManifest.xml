@@ -32,6 +32,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".BotWebActivity"
+            android:exported="true" />
+        <activity
             android:name=".NFCActivity"
             android:exported="true" />
         <activity
