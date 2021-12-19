@@ -11,13 +11,16 @@
         android:id="@+id/resumenDia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:hint="Cargando resumen..."
+        android:paddingLeft="16dp"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instruccion1"
-        app:layout_constraintVertical_bias="0.112" />
+        app:layout_constraintVertical_bias="0.110000014" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/materialDivider2"
@@ -48,12 +51,12 @@
         android:id="@+id/instruccion1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
         android:layout_marginTop="28dp"
         android:text="Resumen del día"
         android:textColor="?attr/colorPrimary"
         android:textSize="20sp"
         android:textStyle="italic|bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialDivider2" />
 
