@@ -7,60 +7,26 @@
     tools:context=".MainActivity"
     tools:visibility="visible">
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/materialDivider5"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/resumenDia"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/instruccion4"
-        tools:layout_editor_absoluteX="-4dp" />
-
-    <TextView
-        android:id="@+id/instruccion4"
-        android:layout_width="400dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="16dp"
-        android:text="Desliza con 3 dedos hacia arriba para enviar un correo"
+        android:layout_marginStart="112dp"
+        android:hint="Cargando resumen..."
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialDivider4" />
-
-    <TextView
-        android:id="@+id/instruccion3"
-        android:layout_width="400dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="16dp"
-        android:text='En el apartado de "Asistencia" pasa la asistencia escaneando el NFC de tu mesa'
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialDivider3" />
-
-    <TextView
-        android:id="@+id/instruccion2"
-        android:layout_width="400dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="16dp"
-        android:text="Agita el smartphone para abrir el apartado de notas"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialDivider" />
-
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/materialDivider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/instruccion1"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.112" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/materialDivider2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        app:dividerColor="?attr/colorPrimary"
+        app:dividerInsetEnd="20dp"
+        app:dividerInsetStart="20dp"
         app:layout_constraintTop_toBottomOf="@+id/homeFragment"
         tools:layout_editor_absoluteX="-16dp" />
 
@@ -78,30 +44,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.04000002" />
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/materialDivider3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/instruccion2"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/materialDivider4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/instruccion3"
-        tools:layout_editor_absoluteX="-7dp" />
-
     <TextView
         android:id="@+id/instruccion1"
-        android:layout_width="400dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="16dp"
-        android:text="Gira el móvil a derecha o izquierda para pasar de página"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="28dp"
+        android:text="Resumen del día"
+        android:textColor="?attr/colorPrimary"
         android:textSize="20sp"
+        android:textStyle="italic|bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialDivider2" />
 
@@ -114,33 +66,47 @@
         android:hint="Pulsa el boton para hablar..."
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.227"
-        tools:layout_editor_absoluteX="-4dp" />
+        app:layout_constraintTop_toBottomOf="@+id/instruccion1"
+        app:layout_constraintVertical_bias="0.775"
+        tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
         android:id="@+id/button"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="44dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="#F9F8FA"
-        android:paddingRight="10dp"
         android:src="@drawable/baseline_mic_black_24dp"
+        app:layout_constraintBottom_toTopOf="@+id/text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/materialDivider5" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/tts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Resumen del Dia"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resumenDia"
+        app:layout_constraintVertical_bias="0.097" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/dialogflowButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        app:backgroundTint="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text" />
+        app:layout_constraintTop_toBottomOf="@+id/text"
+        app:srcCompat="@drawable/dialogflow_svg"
+        app:tint="@null" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.github.tlaabs.timetableview.Schedule;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,9 +26,11 @@ import in.championswimmer.sfg.lib.SimpleFingerGestures;
 public class HomeFragment extends Fragment {
 
     TextView text;
+    TextView resumen;
     static EditText editText;
     static ImageView micButton;
     static Button ttsButton;
+    static FloatingActionButton dialog;
 
     public HomeFragment(){
         // require a empty public constructor
@@ -39,10 +42,14 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         text = view.findViewById(R.id.homeFragment);
 
+
+        resumen = view.findViewById(R.id.resumenDia);
         editText = view.findViewById(R.id.text);
         micButton = view.findViewById(R.id.button);
         ttsButton = view.findViewById(R.id.tts);
+        dialog = view.findViewById(R.id.dialogflowButton);
 
+        resumen.setText(resumenDelDia());
 
         micButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -70,6 +77,15 @@ public class HomeFragment extends Fragment {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         MainActivity.textToSpeechEngine.speak(text, TextToSpeech.QUEUE_FLUSH, null, "tts1");
                     }
+            }
+        });
+
+        dialog.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Intent i = new Intent(getContext(),BotWebActivity.class);
+                startActivity(i);
+                return true;
             }
         });
 
@@ -148,13 +164,16 @@ public class HomeFragment extends Fragment {
                 clases_del_dia.add(clase);
             }
         }
-
-        for (Schedule clase:clases_del_dia){
-            if(clase == clases_del_dia.get(clases_del_dia.size()-1))
-                horario = horario + "y ";
-            horario = horario + clase.getClassTitle()+" ";
+        if(clases_del_dia.isEmpty()) {
+            horario = "Hoy no tienes clase";
         }
-
+        else {
+            for (Schedule clase : clases_del_dia) {
+                if (clase == clases_del_dia.get(clases_del_dia.size() - 1))
+                    horario = horario + "y ";
+                horario = horario + clase.getClassTitle() + " ";
+            }
+        }
 
         return horario;
     }

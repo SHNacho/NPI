@@ -5,14 +5,18 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.github.tlaabs.timetableview.Schedule;
@@ -20,6 +24,7 @@ import com.github.tlaabs.timetableview.Time;
 import com.github.tlaabs.timetableview.TimetableView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import in.championswimmer.sfg.lib.SimpleFingerGestures;
 
@@ -32,7 +37,10 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
 
     private View view;
     private TextView tv;
+    private TextToSpeech textToSpeechEngine;
     static public TimetableView timetable;
+    static ImageButton ttsButton;
+
 
 
     public HorarioFragment() {
@@ -62,6 +70,16 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
 
         timetable.add(crearAgenda());
 
+        textToSpeechEngine = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.SUCCESS) {
+                    Log.e("TTS", "Inicio de la síntesis fallido");
+                }
+            }
+        });
+
+        ttsButton = (ImageButton) view.findViewById(R.id.botonsiguienteasignatura) ;
         Sensor pressure = MainActivity.sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
         MainActivity.sensorManager.registerListener((SensorEventListener) this, pressure, SensorManager.SENSOR_DELAY_NORMAL);
 
@@ -122,6 +140,16 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
             @Override
             public void OnStickerSelected(int idx, ArrayList<Schedule> schedules) {
                openScanner(view, idx, schedules);
+            }
+        });
+
+        ttsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String text = siguienteAsignatura();
+                if (!text.isEmpty())
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        MainActivity.textToSpeechEngine.speak(text, TextToSpeech.QUEUE_FLUSH, null, "tts1");
+                    }
             }
         });
 
@@ -249,4 +277,33 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
 
     }
 
+    private String siguienteAsignatura(){
+        Calendar calendar = Calendar.getInstance();
+        int dia = calendar.get(Calendar.DAY_OF_WEEK)-2;
+        int hora = calendar.get(Calendar.HOUR);
+        ArrayList<Schedule> clases = HorarioFragment.crearAgenda();
+        ArrayList<Schedule> clases_del_dia = new ArrayList<Schedule>();
+        Boolean no_escrito = true;
+        String horario = "Hoy no tienes mas clase";
+
+        for (Schedule clase:clases){
+            if (clase.getDay()==dia){
+                clases_del_dia.add(clase);
+            }
+        }
+        if(clases_del_dia.isEmpty()) {
+            horario = "Hoy no tienes clase";
+        }
+
+        for(int i = 0;i<clases_del_dia.size()&&no_escrito;i++){
+            if (clases_del_dia.get(i).getStartTime().getHour()<hora){
+                horario = "Tu siguiente clase es "+clases_del_dia.get(i).getClassTitle()
+                        +" en el aula "+clases_del_dia.get(i).getClassPlace();
+                no_escrito=false;
+            }
+        }
+
+
+        return horario;
+    }
 }

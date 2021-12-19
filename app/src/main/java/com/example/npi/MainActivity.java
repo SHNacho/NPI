@@ -353,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     };
 
     public void ProcesarResultado(String resultado){
-        if(resultado.contains("horario")){
+        if(resultado.contains("horario")||resultado.contains("clase")){
             getSupportFragmentManager().beginTransaction().replace(
                     R.id.container,
                     horarioFragment
@@ -382,7 +382,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Intent i = new Intent(getApplicationContext(),contactosActivity.class);
             startActivity(i);
         }
-        else if(resultado.contains("bot")){
+        else if(resultado.contains("bot") || resultado.contains("asistente")){
             Intent i = new Intent(getApplicationContext(),BotWebActivity.class);
             startActivity(i);
         }
