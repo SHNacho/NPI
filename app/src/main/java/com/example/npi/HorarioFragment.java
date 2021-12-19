@@ -286,6 +286,7 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         Boolean no_escrito = true;
         String horario = "Hoy no tienes mas clase";
 
+
         for (Schedule clase:clases){
             if (clase.getDay()==dia){
                 clases_del_dia.add(clase);
@@ -296,9 +297,10 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
         }
 
         for(int i = 0;i<clases_del_dia.size()&&no_escrito;i++){
-            if (clases_del_dia.get(i).getStartTime().getHour()<hora){
+            if (clases_del_dia.get(i).getStartTime().getHour()>hora){
                 horario = "Tu siguiente clase es "+clases_del_dia.get(i).getClassTitle()
                         +" en el aula "+clases_del_dia.get(i).getClassPlace();
+                horario = horario.replace('.',' ');
                 no_escrito=false;
             }
         }
