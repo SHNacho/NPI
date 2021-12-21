@@ -280,7 +280,7 @@ public class HorarioFragment extends Fragment implements SensorEventListener {
     private String siguienteAsignatura(){
         Calendar calendar = Calendar.getInstance();
         int dia = calendar.get(Calendar.DAY_OF_WEEK)-2;
-        int hora = calendar.get(Calendar.HOUR);
+        int hora = calendar.get(Calendar.HOUR_OF_DAY);
         ArrayList<Schedule> clases = HorarioFragment.crearAgenda();
         ArrayList<Schedule> clases_del_dia = new ArrayList<Schedule>();
         Boolean no_escrito = true;

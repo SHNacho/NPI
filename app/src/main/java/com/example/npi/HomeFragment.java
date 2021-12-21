@@ -169,7 +169,7 @@ public class HomeFragment extends Fragment {
         }
         else {
             for (Schedule clase : clases_del_dia) {
-                if (clase == clases_del_dia.get(clases_del_dia.size() - 1))
+                if (clase == clases_del_dia.get(clases_del_dia.size() - 1) && clases_del_dia.size()!=1)
                     horario = horario + "y ";
                 horario = horario + clase.getClassTitle() + " ";
             }
